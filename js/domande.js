@@ -99,15 +99,17 @@ const questions = [
   ];
 
 
-const arrayDomande = [];
+const arrayRisposteCorrette = []; // array che serve a memorizzare il totale delle risposte corrette
+var indiceDiPartenza = 0;
 
-function nextQuestion(){
+
+function nextQuestion(indiceCurrentQuestion){
     // definisco l'indice della domanda che voglio
-    var indiceCurrentQuestion = Math.floor(Math.random() * questions.length);
+    // var indiceCurrentQuestion = Math.floor(Math.random() * questions.length);
 
     // scrivo nello span del footer l'indice della domanda
     var domandaCorrente = document.getElementById('domanda_corrente');
-    domandaCorrente.innerText = indiceCurrentQuestion;
+    domandaCorrente.innerText = indiceCurrentQuestion + 1;
 
     // qui creo un array che contiene sia risposte giuste che sbagliate
     const opzioni = questions[indiceCurrentQuestion].incorrect_answers.concat(questions[indiceCurrentQuestion].correct_answer);  
@@ -130,6 +132,9 @@ function nextQuestion(){
     var opzione_3 = document.getElementById('3');
     var opzione_4 = document.getElementById('4');
 
+
+  
+
     // definisco nelle variabili il testo delle opzioni per poi scriverle più sotto con il literal
     opzione1Text = opzioni[0];
     opzione2Text = opzioni[1];
@@ -145,9 +150,35 @@ function nextQuestion(){
     if (questions[indiceCurrentQuestion].incorrect_answers.length > 1) {
         opzione_3.innerHTML = `<button class="bottone_domanda">${opzione3Text}</button>`;
         opzione_4.innerHTML = `<button class="bottone_domanda">${opzione4Text}</button>`;     
-    }
+    }  
+    
+    // seleziono tutti i button 
+    const allButtons = document.querySelectorAll('button')
+
+    // tramite un forEach addo l'eventListener ad ogni button.
+    // la funzione richiamata:
+    //    1. controlla se la risposta è giusta e pusha a arrayRisposteCorrette 1 (se giusta)/ 0 (se sbagliata)
+    //    2. triggera di nuovo la funzione nextQuestion per cambiare domanda
+    allButtons.forEach(function(button) {
+      button.addEventListener("click", function () {
+          var risposta = this.textContent;
+          if (questions[indiceCurrentQuestion].correct_answer === risposta) {
+              arrayRisposteCorrette.push(1);
+              console.log("risposte corrette: " + arrayRisposteCorrette);
+              nextQuestion(indiceCurrentQuestion + 1);
+          } else {
+              arrayRisposteCorrette.push(0);
+              console.log("risposte corrette: " + arrayRisposteCorrette);
+              nextQuestion(indiceCurrentQuestion + 1);
+          }
+      });
+  });
+
 };
 
 
+
+
+
 //prova github
-nextQuestion();
+nextQuestion(indiceDiPartenza);

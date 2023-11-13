@@ -107,6 +107,7 @@ section div {
     font-size: 20px;
     margin: 5px 20px 10px 20px;
     border: 1px solid white; /* da rivedere colore e sfumatura */
+    cursor: pointer;
     
 }
 #footer_domanda {
