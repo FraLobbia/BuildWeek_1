@@ -97,36 +97,55 @@ const questions = [
       incorrect_answers: ["Python", "C", "Jakarta"],
     },
   ];
+
+
 const arrayDomande = [];
 
 function nextQuestion(){
+    // definisco l'indice della domanda che voglio
+    var indiceCurrentQuestion = Math.floor(Math.random() * questions.length);
 
-    var indiceCurrentQuestion = 0;
+    // scrivo nello span del footer l'indice della domanda
+    var domandaCorrente = document.getElementById('domanda_corrente');
+    domandaCorrente.innerText = indiceCurrentQuestion;
 
+    // qui creo un array che contiene sia risposte giuste che sbagliate
+    const opzioni = questions[indiceCurrentQuestion].incorrect_answers.concat(questions[indiceCurrentQuestion].correct_answer);  
+
+    // qui dichiaro la funzione che randomizza la posizione delle risposte nell'array appena creato
+    function risposteRandomiche(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+    }
+
+    // qui evoco la funzione che randomizza 
+    risposteRandomiche(opzioni);
+
+    // ottengo in variabili i miei elementi per poi scriverci dentro
     var domanda = document.querySelector('h3');
     var opzione_1 = document.getElementById('1');
     var opzione_2 = document.getElementById('2');
     var opzione_3 = document.getElementById('3');
     var opzione_4 = document.getElementById('4');
 
-    domanda.innerHTML = questions[indiceCurrentQuestion].question;
-    opzione_1.innerText = questions[indiceCurrentQuestion].correct_answer;
+    // definisco nelle variabili il testo delle opzioni per poi scriverle più sotto con il literal
+    opzione1Text = opzioni[0];
+    opzione2Text = opzioni[1];
+    opzione3Text = opzioni[2];
+    opzione4Text = opzioni[3];
 
-    
+    // scrivo la domanda nel DOM
+    domanda.innerHTML =  questions[indiceCurrentQuestion].question ;
 
-    for (let i = 0; i < questions.length; i++) {
-        const element = questions[i];
-        // element.incorrect_answers.push(element.correct_answer)
-        arrayDomande.push(element.correct_answer)  
-        arrayDomande.push(element.incorrect_answers[0])  
-        arrayDomande.push(element.incorrect_answers[1])  
-        arrayDomande.push(element.incorrect_answers[2])   
+    // scrivo le opzioni nel DOM
+    opzione_1.innerHTML = `<button class="bottone_domanda">${opzione1Text}</button>`;
+    opzione_2.innerHTML = `<button class="bottone_domanda">${opzione2Text}</button>`;
+    if (questions[indiceCurrentQuestion].incorrect_answers.length > 1) {
+        opzione_3.innerHTML = `<button class="bottone_domanda">${opzione3Text}</button>`;
+        opzione_4.innerHTML = `<button class="bottone_domanda">${opzione4Text}</button>`;     
     }
-
-  };
+};
 
 nextQuestion();
-
-console.log(arrayDomande);
-
-

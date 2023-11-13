@@ -122,3 +122,7 @@ footer p {
 #domanda_corrente {
     font-size: 20px;
 }
+
+.correct {
+    color: green;
+}
