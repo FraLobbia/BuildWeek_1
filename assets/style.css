@@ -67,7 +67,7 @@ footer span {
     color: #BDC4CE;
 }
 
-button {
+#proceed {
     /* da sistemare margin right di button, deve partire da destra */
     width: 350px;
     height: 90px;
@@ -77,7 +77,37 @@ button {
     margin-left: 10vw;
     box-shadow: 1px 1px 50px #00ffffb7;
     cursor: pointer;
-
 }
 
 
+/* seconda pagina */
+
+h3 {
+    font-size: 70px;
+    margin-top: 170px;
+    margin-bottom: 50px;
+    line-height: 1;
+    text-align: center;
+}
+section {
+    text-align: center;
+}
+
+section div {
+    display: inline;
+}
+
+.bottone_domanda {
+    width: 400px;
+    height: 70px;
+    background-color: #ffffff1d;
+    border-radius: 50px;
+    color: white;
+    font-family: 'Outfit', sans-serif;
+    font-size: 20px;
+    margin: 5px 20px 10px 20px;
+    border: 1px solid white; /* da rivedere colore e sfumatura */
+}
+#footer_domanda {
+    text-align: center;
+}
