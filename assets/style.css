@@ -57,8 +57,9 @@ footer {
 }
 
 input {
-    background-color:tomato;
-    /* border: 1px solid white; */
+    border: 1px;
+    /* opacity: 0; lo fa diventare trasparente, da capire come fare bordo*/
+    
 }
 
 footer span {
@@ -69,6 +70,7 @@ footer span {
 
 #proceed {
     /* da sistemare margin right di button, deve partire da destra */
+    margin-top: 30px;
     width: 350px;
     height: 90px;
     background-color: #00ffff;
@@ -82,6 +84,12 @@ footer span {
 
 /* seconda pagina */
 
+#contenitore_orologio {
+    text-align: right;
+}
+#orologio {
+    margin-right: 20px;
+}
 h3 {
     font-size: 70px;
     margin-top: 170px;

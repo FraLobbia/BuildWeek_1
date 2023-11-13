@@ -101,12 +101,13 @@ const questions = [
 
 const arrayRisposteCorrette = []; // array che serve a memorizzare il totale delle risposte corrette
 var indiceDiPartenza = 0;
+let timer;
 
 // ----------------------------------------------------- dichiarazioni ----------------------------------------------------------------------------------------------
 function nextQuestion(indiceCurrentQuestion){
     // definisco l'indice della domanda che voglio
     // var indiceCurrentQuestion = Math.floor(Math.random() * questions.length);
-
+    tempo(indiceCurrentQuestion);
     // scrivo nello span del footer l'indice della domanda
     var domandaCorrente = document.getElementById('domanda_corrente');
     domandaCorrente.innerText = indiceCurrentQuestion + 1;
@@ -164,12 +165,15 @@ function nextQuestion(indiceCurrentQuestion){
           if (questions[indiceCurrentQuestion].correct_answer === risposta) {
               arrayRisposteCorrette.push(1);
               console.log("risposte corrette: " + arrayRisposteCorrette);
-              nextQuestion(indiceCurrentQuestion + 1);
+              clearInterval(timer);
+              sceltaOpzione(indiceCurrentQuestion)
           } else {
               arrayRisposteCorrette.push(0);
               console.log("risposte corrette: " + arrayRisposteCorrette);
-              nextQuestion(indiceCurrentQuestion + 1);
+              clearInterval(timer); 
+              sceltaOpzione(indiceCurrentQuestion)
           }
+          
       });
   });
 
@@ -179,23 +183,26 @@ function nextQuestion(indiceCurrentQuestion){
 //prova github
 nextQuestion(indiceDiPartenza);
 
-function tempo() {
-  tempoRimanente = 60;
+function tempo(indiceCurrentQuestion) {
+  clearInterval(timer);
+  tempoRimanente =60;
   aggiornaTempo();
   timer = setInterval(function() {                      /* per orologio */
     aggiornaTempo();
-    if (tempoRimanente === 0) {sceltaOpzione();}
+    if (tempoRimanente === 0) {
+      clearInterval(timer);
+      sceltaOpzione(indiceCurrentQuestion);
+    }
   }, 1000);
 }
-function sceltaOpzione(selectedOption) {
-  clearInterval(timer);
-
-  if (indiceCurrentQuestion === /*  domande totali una variabile tipo y = questions.length */ - 1) {
-    /*funzione per finire il test  ()*/;
+function sceltaOpzione(indiceCurrentQuestion)  {
+  let y = questions.length
+  if (indiceCurrentQuestion === y - 1) {
+    fine();
   } else {
     indiceCurrentQuestion++;
-    tempo();
-    nextQuestion();
+    tempo(indiceCurrentQuestion);
+    nextQuestion(indiceCurrentQuestion);
   }
 }
 function aggiornaTempo() {
@@ -203,5 +210,8 @@ function aggiornaTempo() {
   orologio.textContent = tempoRimanente;
   tempoRimanente--;
 }
+function fine() {
+  clearInterval(timer);
+  window.location.href = "welcome.html";
+}
 
-tempo();
