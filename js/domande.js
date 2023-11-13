@@ -102,7 +102,7 @@ const questions = [
 const arrayRisposteCorrette = []; // array che serve a memorizzare il totale delle risposte corrette
 var indiceDiPartenza = 0;
 
-
+// ----------------------------------------------------- dichiarazioni ----------------------------------------------------------------------------------------------
 function nextQuestion(indiceCurrentQuestion){
     // definisco l'indice della domanda che voglio
     // var indiceCurrentQuestion = Math.floor(Math.random() * questions.length);
@@ -150,8 +150,7 @@ function nextQuestion(indiceCurrentQuestion){
     if (questions[indiceCurrentQuestion].incorrect_answers.length > 1) {
         opzione_3.innerHTML = `<button class="bottone_domanda">${opzione3Text}</button>`;
         opzione_4.innerHTML = `<button class="bottone_domanda">${opzione4Text}</button>`;     
-    }  
-    
+    }
     // seleziono tutti i button 
     const allButtons = document.querySelectorAll('button')
 
@@ -177,8 +176,32 @@ function nextQuestion(indiceCurrentQuestion){
 };
 
 
-
-
-
 //prova github
 nextQuestion(indiceDiPartenza);
+
+function tempo() {
+  tempoRimanente = 60;
+  aggiornaTempo();
+  timer = setInterval(function() {                      /* per orologio */
+    aggiornaTempo();
+    if (tempoRimanente === 0) {sceltaOpzione();}
+  }, 1000);
+}
+function sceltaOpzione(selectedOption) {
+  clearInterval(timer);
+
+  if (indiceCurrentQuestion === /*  domande totali una variabile tipo y = questions.length */ - 1) {
+    /*funzione per finire il test  ()*/;
+  } else {
+    indiceCurrentQuestion++;
+    tempo();
+    nextQuestion();
+  }
+}
+function aggiornaTempo() {
+  const orologio = document.getElementById("orologio");        
+  orologio.textContent = tempoRimanente;
+  tempoRimanente--;
+}
+
+tempo();
