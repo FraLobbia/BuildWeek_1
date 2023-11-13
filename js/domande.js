@@ -107,7 +107,7 @@ function nextQuestion(){
 
     // scrivo nello span del footer l'indice della domanda
     var domandaCorrente = document.getElementById('domanda_corrente');
-    domandaCorrente.innerText = indiceCurrentQuestion;
+    domandaCorrente.innerText = indiceCurrentQuestion +1;
 
     // qui creo un array che contiene sia risposte giuste che sbagliate
     const opzioni = questions[indiceCurrentQuestion].incorrect_answers.concat(questions[indiceCurrentQuestion].correct_answer);  
@@ -151,3 +151,30 @@ function nextQuestion(){
 
 //prova github
 nextQuestion();
+
+function tempo() {
+  tempoRimanente = 60;
+  aggiornaTempo();
+  timer = setInterval(function() {                      /* per orologio */
+    aggiornaTempo();
+    if (tempoRimanente === 0) {sceltaOpzione();}
+  }, 1000);
+}
+function sceltaOpzione(selectedOption) {
+  clearInterval(timer);
+
+  if (indiceCurrentQuestion === /*  domande totali una variabile tipo y = questions.length */ - 1) {
+    /*funzione per finire il test  ()*/;
+  } else {
+    indiceCurrentQuestion++;
+    nextQuestion();
+    tempo();
+  }
+}
+function aggiornaTempo() {
+  const orologio = document.getElementById("orologio");        
+  orologio.textContent = tempoRimanente;
+  tempoRimanente--;
+}
+
+tempo();
