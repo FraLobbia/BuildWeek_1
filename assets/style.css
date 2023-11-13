@@ -1,0 +1,83 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+body {
+    background-image: url(./bg.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 5vh 10vw 10vh 10vw;
+    color: white;
+    font-family: 'Outfit', sans-serif;
+}
+
+img {
+    height: 40px;
+}
+
+h1 {
+    font-size: 120px;
+    margin-top: 100px;
+    margin-bottom: 50px;
+    line-height: 0.7;
+}
+
+h1 span {
+ font-weight: 700;
+}
+
+h2 {
+    color: #C5138F;
+    font-size: 60px;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+main p {
+    color: #BDC4CE;
+    font-size: 26px;
+    margin-bottom: 50px;
+    font-family: 'Inter', sans-serif;
+    line-height: 1.2;
+}
+
+ul {
+    color: #BDC4CE;
+    font-size: 26px;
+    line-height: 1.5;
+    padding-left: 1.5em;
+}
+
+ul span {
+    font-weight: 700;
+}
+
+footer {
+    margin-top: 100px;
+}
+
+input {
+    background-color:tomato;
+    /* border: 1px solid white; */
+}
+
+footer span {
+    font-size: 26px;
+    padding-left: 15px;
+    color: #BDC4CE;
+}
+
+button {
+    /* da sistemare margin right di button, deve partire da destra */
+    width: 350px;
+    height: 90px;
+    background-color: #00ffff;
+    font-size: 32px;
+    font-weight: 900;
+    margin-left: 10vw;
+    box-shadow: 1px 1px 50px #00ffffb7;
+    cursor: pointer;
+
+}
+
+
