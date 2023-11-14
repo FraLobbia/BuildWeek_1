@@ -106,7 +106,7 @@ let timer;
 function nextQuestion(indiceCurrentQuestion){
     // definisco l'indice della domanda che voglio
     // var indiceCurrentQuestion = Math.floor(Math.random() * questions.length);
-    tempo(indiceCurrentQuestion);
+    // tempo(indiceCurrentQuestion);
     // scrivo nello span del footer l'indice della domanda
     var domandaCorrente = document.getElementById('domanda_corrente');
     domandaCorrente.innerText = indiceCurrentQuestion + 1;
@@ -179,23 +179,50 @@ function nextQuestion(indiceCurrentQuestion){
   });
 
 };
+//-------------------------------------------------------------------------------------
+var tempoRimanente = 60;
+var time = tempoRimanente;
+var initialOffset = '440';
+var i = 60;
+
+/* Need initial run as interval hasn't yet occured... */
+$('.circle_animation').css('stroke-dashoffset', 0);
+
+var interval = setInterval(function() {
+        $('h2').text(time-i);
+        if (i == time) {    
+      clearInterval(interval);
+            return;
+    }
+    $('.circle_animation').css('stroke-dashoffset', initialOffset*i/time);
+    i++;  
+
+}, 1000);
 
 //-------------------------------------------------------------------------------------
-
-function tempo(indiceCurrentQuestion) {
+if (tempoRimanente === -2) {
   clearInterval(timer);
-  tempoRimanente =60;
-  aggiornaTempo();
-  timer = setInterval(function() {                     
-    aggiornaTempo();
-    if (tempoRimanente === -2) {
-      clearInterval(timer);
-      arrayRisposteCorrette.push(0);  
-      console.log("risposte corrette: " + arrayRisposteCorrette);
-      sceltaOpzione(indiceCurrentQuestion);
-    }
-  }, 1000);
+  arrayRisposteCorrette.push(0);  
+  console.log("risposte corrette: " + arrayRisposteCorrette);
+  sceltaOpzione(indiceCurrentQuestion);
 }
+//-------------------------------------------------------------------------------------
+
+
+/* time out tra una domanda e un altra */
+// function tempo(indiceCurrentQuestion) {
+//   clearInterval(timer);  
+//   aggiornaTempo();
+//   timer = setInterval(function() {                     
+//     aggiornaTempo();
+//     if (tempoRimanente === -2) {
+//       clearInterval(timer);
+//       arrayRisposteCorrette.push(0);  
+//       console.log("risposte corrette: " + arrayRisposteCorrette);
+//       sceltaOpzione(indiceCurrentQuestion);
+//     }
+//   }, 1000);
+// }
 
 //--------------------------------------------------------------------------------------
 
