@@ -253,12 +253,12 @@ function creaPagina3(main) {
   const div1 = document.createElement('div');
   div1.textContent = 'Nuovo div 1';
   div1.classList.add("div1");
-  main.appendChild(Div1);
+  main.appendChild(div1);
 
   const div2 = document.createElement('div');
   div2.textContent = 'Nuovo div 2';
   div2.classList.add("div2");
-  main.appendChild(Div2);
+  main.appendChild(div2);
 }
 
 nextQuestion(indiceDiPartenza);
