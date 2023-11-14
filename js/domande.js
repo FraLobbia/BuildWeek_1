@@ -235,12 +235,27 @@ function fine() {
   clearInterval(timer);
   const main = document.querySelector('main');
   const footer = document.querySelector('footer')
-  const tempo = document.getElementsByClassName('timer');
+  const tempo = document.getElementById('circleTimer');
     main.innerHTML = '';
     footer.innerHTML = '';
-    tempo.innerHTML = '';
+    tempo.parentNode.removeChild(tempo);
+    creaPagina3(main);
 }
 
+
+function creaPagina3(main) {
+  const h1 = document.createElement('h1');
+  h1.textContent = 'Nuovo h1';
+  main.appendChild(h1);
+
+  const Div1 = document.createElement('div');
+  Div1.textContent = 'Nuovo div 1';
+  main.appendChild(Div1);
+
+  const Div2 = document.createElement('div');
+  Div2.textContent = 'Nuovo div 2';
+  main.appendChild(Div2);
+}
 
 nextQuestion(indiceDiPartenza);
 

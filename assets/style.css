@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 
@@ -173,25 +172,69 @@ footer p {
     color: green;
 }
 
-/* --------------------------------------- */
-.item {
-    position: relative;
-    float: left;
+/* quarta pagina */
+
+
+#feedback-container {
+    text-align: center;
+    padding: 0 12vw 0 12vw;
 }
 
-.item h2 {
-    text-align:center;
-    position: absolute;
-    line-height: 125px;
-    width: 100%;
+#feedback-container p {
+    font-weight: 500;
+    color: white;
 }
 
-svg {
-    transform: rotate(-90deg);
+h4 {
+    font-size: 60px;
+    margin-top: 100px;
+    font-weight: 600;
+    margin-bottom: 25px;
 }
 
-.circle_animation {
-    stroke-dasharray: 440; /* this value is the pixel circumference of the circle */
-    stroke-dashoffset: 440;
-    transition: all 1s linear;
+#star-container {
+    margin-bottom: 80px;
+}
+
+
+#star-container svg {
+    margin-right: 10px;
+    cursor: pointer;
+    transition: fill 0.3s;
+}
+
+#star-container svg:hover,
+#star-container svg.selected {
+    fill: #00FFFF;
+}
+
+.info-footer {
+    text-align: center;
+}
+
+#info-button {
+    width: 300px;
+    height: 80px;
+    background-color: #00ffff;
+    font-size: 28px;
+    font-weight: 700;
+    text-align: center;
+    box-shadow: 1px 1px 50px #00ffffb7;
+    cursor: pointer;
+}
+
+hr {
+    margin-bottom: 70px;
+    border: 1.5px solid #C5138F;
+}
+
+#comment-container {
+    padding: 0 13vw 0 13vw;
+}
+
+#comment {
+    color: white;
+    font-size: 18px;
+    margin-left: 35px;
+    background-color: transparent;
 }

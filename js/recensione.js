@@ -1,9 +1,8 @@
-// Attendi che il documento HTML sia completamente caricato
 document.addEventListener("DOMContentLoaded", function () {
-    // Seleziona tutte le stelle nel container
+    // Seleziono tutte le stelle nel container
     var stars = document.querySelectorAll('#star-container svg');
 
-    // Aggiungi eventi per ogni stella
+    // Aggiungo eventi per ogni stella
     stars.forEach(function (star, index) {
         // Evento al passaggio del mouse sopra la stella
         star.addEventListener('mouseover', function () {
