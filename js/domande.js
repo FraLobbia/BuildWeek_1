@@ -246,14 +246,18 @@ function fine() {
 function creaPagina3(main) {
   const h1 = document.createElement('h1');
   h1.textContent = 'Nuovo h1';
+  h1.classList.add("h1new");
   main.appendChild(h1);
+  
 
-  const Div1 = document.createElement('div');
-  Div1.textContent = 'Nuovo div 1';
+  const div1 = document.createElement('div');
+  div1.textContent = 'Nuovo div 1';
+  div1.classList.add("div1");
   main.appendChild(Div1);
 
-  const Div2 = document.createElement('div');
-  Div2.textContent = 'Nuovo div 2';
+  const div2 = document.createElement('div');
+  div2.textContent = 'Nuovo div 2';
+  div2.classList.add("div2");
   main.appendChild(Div2);
 }
 
