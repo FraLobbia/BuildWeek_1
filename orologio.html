@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .item {
+            position: relative;
+            width: 160px;
+            height: 160px;
+        }
+
+        h2 {
+            text-align: center;
+            position: absolute;
+            line-height: 125px;
+            width: 100%;
+            margin: 0;
+            z-index: 2;
+        }
+
+        svg {
+            transform: rotate(-90deg);
+        }
+
+        .circle_animation {
+            stroke-dasharray: 440;
+            /* this value is the pixel circumference of the circle */
+            stroke-dashoffset: 440;
+            transition: all 1s linear;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="item">
+        <h2>60</h2>
+        <svg width="160" height="160" xmlns="http://www.w3.org/2000/svg">
+            <circle id="circle" class="circle_animation" r="69.85699" cy="81" cx="81" stroke-width="8" stroke="#6fdb6f"
+                fill="none" />
+        </svg>
+    </div>
+
+    <script>
+        // Impostiamo il tempo in secondi
+        let time = 60;
+        // Impostiamo l'offset iniziale del tratto del cerchio al massimo
+        let initialOffset = 440;
+        // Contatore per tener traccia del tempo trascorso
+        let i = 0;
+
+        // Partiamo con una breve ritardo prima di iniziare l'intervallo
+        setTimeout(() => {
+            document.querySelector('.circle_animation').style.strokeDashoffset = initialOffset;
+        }, 100);
+
+        // Definiamo l'intervallo che si ripete ogni secondo
+        const interval = setInterval(function () {
+            // Aggiorniamo il testo numerico visualizzato al centro del cerchio
+            document.querySelector('h2').textContent = time - i;
+            // Se raggiungiamo il tempo desiderato, fermiamo l'intervallo
+            if (i === time) {
+                clearInterval(interval);
+                return;
+            }
+            // Decrementiamo l'offset del tratto del cerchio per creare l'animazione
+            document.querySelector('.circle_animation').style.strokeDashoffset = initialOffset - ((i + 1) * (initialOffset / time));
+            // Incrementiamo il contatore del tempo trascorso
+            i++;
+        }, 1000); // L'intervallo si ripete ogni secondo
+    </script>
+</body>
+
+</html>
