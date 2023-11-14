@@ -182,7 +182,7 @@ function nextQuestion(indiceCurrentQuestion){
 
 //-------------------------------------------------------------------------------------
 
-function tempo(indiceCurrentQuestion) {
+/* function tempo(indiceCurrentQuestion) {
   clearInterval(timer);
   tempoRimanente =60;
   aggiornaTempo();
@@ -195,7 +195,36 @@ function tempo(indiceCurrentQuestion) {
       sceltaOpzione(indiceCurrentQuestion);
     }
   }, 1000);
+} */
+
+//---------------------------------------------------------------------------------
+let tempoRimanente = 10;
+
+function tempo(indiceCurrentQuestion) {
+  clearInterval(timer);
+  tempoRimanente = 10;
+  const initialOffset = 440;
+  let i = tempoRimanente;
+  const progressBar = $('.circle_animation');
+  progressBar.css('stroke-dashoffset', initialOffset + (i * (initialOffset / 10)));
+  aggiornaTempo();
+  $('h2').text(i); 
+  timer = setInterval(function () {
+    i--;
+    if (i === 0) {
+      clearInterval(timer);
+      arrayRisposteCorrette.push(0);
+      console.log("risposte corrette: " + arrayRisposteCorrette);
+      sceltaOpzione(indiceCurrentQuestion);
+    } else {
+      progressBar.css('stroke-dashoffset', initialOffset + (i * (initialOffset / 10)));
+      aggiornaTempo();
+    }
+    progressBar.css('stroke-dashoffset', initialOffset + (i * (initialOffset / 10)));
+    $('h2').text(i); 
+  }, 1000);
 }
+
 
 //--------------------------------------------------------------------------------------
 
@@ -205,7 +234,9 @@ function sceltaOpzione(indiceCurrentQuestion)  {
     fine();
   } else {
     indiceCurrentQuestion++;
+    setTimeout(function () {
     nextQuestion(indiceCurrentQuestion);
+    }, 500);
   }
 }
 
