@@ -98,7 +98,6 @@ const questions = [
     },
   ];
 
-
 const arrayRisposteCorrette = []; // array che serve a memorizzare il totale delle risposte corrette
 var indiceDiPartenza = 0;
 let timer;
@@ -134,7 +133,6 @@ function nextQuestion(indiceCurrentQuestion){
     var opzione_4 = document.getElementById('4');
 
 
-  
 
     // definisco nelle variabili il testo delle opzioni per poi scriverle più sotto con il literal
     opzione1Text = opzioni[0];
@@ -151,6 +149,9 @@ function nextQuestion(indiceCurrentQuestion){
     if (questions[indiceCurrentQuestion].incorrect_answers.length > 1) {
         opzione_3.innerHTML = `<button class="bottone_domanda">${opzione3Text}</button>`;
         opzione_4.innerHTML = `<button class="bottone_domanda">${opzione4Text}</button>`;     
+    } else {
+      opzione_3.innerHTML = "";
+      opzione_4.innerHTML = "";
     }
     // seleziono tutti i button 
     const allButtons = document.querySelectorAll('button')
@@ -179,39 +180,49 @@ function nextQuestion(indiceCurrentQuestion){
 
 };
 
-
-//prova github
-nextQuestion(indiceDiPartenza);
+//-------------------------------------------------------------------------------------
 
 function tempo(indiceCurrentQuestion) {
   clearInterval(timer);
   tempoRimanente =60;
   aggiornaTempo();
-  timer = setInterval(function() {                      /* per orologio */
+  timer = setInterval(function() {                     
     aggiornaTempo();
-    if (tempoRimanente === 0) {
+    if (tempoRimanente === -2) {
       clearInterval(timer);
+      arrayRisposteCorrette.push(0);  
+      console.log("risposte corrette: " + arrayRisposteCorrette);
       sceltaOpzione(indiceCurrentQuestion);
     }
   }, 1000);
 }
+
+//--------------------------------------------------------------------------------------
+
 function sceltaOpzione(indiceCurrentQuestion)  {
   let y = questions.length
   if (indiceCurrentQuestion === y - 1) {
     fine();
   } else {
     indiceCurrentQuestion++;
-    tempo(indiceCurrentQuestion);
     nextQuestion(indiceCurrentQuestion);
   }
 }
+
+//--------------------------------------------------------------------------------------
+
 function aggiornaTempo() {
   const orologio = document.getElementById("orologio");        
   orologio.textContent = tempoRimanente;
   tempoRimanente--;
 }
+
+//--------------------------------------------------------------------------------------
+
 function fine() {
   clearInterval(timer);
   window.location.href = "welcome.html";
 }
 
+
+nextQuestion(indiceDiPartenza);
