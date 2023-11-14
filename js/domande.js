@@ -243,22 +243,60 @@ function fine() {
 }
 
 
-function creaPagina3(main) {
-  const h1 = document.createElement('h1');
-  h1.textContent = 'Nuovo h1';
-  h1.classList.add("h1new");
-  main.appendChild(h1);
-  
+//---------------------------------------------------------------------------------------------
 
+function creaPagina3(main) {
   const div1 = document.createElement('div');
-  div1.textContent = 'Nuovo div 1';
   div1.classList.add("div1");
   main.appendChild(div1);
 
+  const h4 = document.createElement('h4');
+  h4.innerHTML = 'Results';
+  h4.classList.add("h1new");
+  div1.appendChild(h4);
+  
+  const p = document.createElement('p');
+  p.innerHTML = 'The summar of your answers:';
+  p.classList.add("pnew");
+  div1.appendChild(p);
+
   const div2 = document.createElement('div');
-  div2.textContent = 'Nuovo div 2';
   div2.classList.add("div2");
   main.appendChild(div2);
+
+  const h5 = document.createElement('h5');
+  h5.innerHTML = 'Correct';
+  h5.classList.add("h5");
+  div2.appendChild(h5);
+
+  const span = document.createElement('span');
+  span.innerHTML = '<br> 70%';
+  span.classList.add("percentuale_giuste");
+  h5.appendChild(span);
+
+  const spanSxbasso = document.createElement('span');
+  spanSxbasso.innerHTML = '<br> 7/10';
+  spanSxbasso.classList.add("risposte_giuste");
+  h5.appendChild(spanSxbasso);
+
+  const div3 = document.createElement('div');
+  div3.innerHTML = 'Nuovo div3';
+  div3.classList.add("div3");
+  main.appendChild(div3);
+
+  const div4 = document.createElement('div');
+  div4.classList.add("div4");
+  main.appendChild(div4);
+
+  const h5Destra = document.createElement('h5');
+  h5Destra.innerHTML = 'Wrong';
+  h5Destra.classList.add("h5Destra");
+  div4.appendChild(h5Destra);
+
+  const spanDestro = document.createElement('span');
+  spanDestro.innerHTML = '<br> 30%';
+  spanDestro.classList.add("percentuale_sbagliate");
+  h5Destra.appendChild(spanDestro);
 }
 
 nextQuestion(indiceDiPartenza);

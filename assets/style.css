@@ -238,3 +238,17 @@ hr {
     margin-left: 35px;
     background-color: transparent;
 }
+
+/* ------------ Pagina risultati--------------- */
+
+.div1 {
+    text-align: center;
+}
+.div2, .div3, .div4 {
+    text-align: center;
+    display: inline-block;
+    width: 33.33%;
+}
+.div3 {
+    margin-top: 8vh;
+}
