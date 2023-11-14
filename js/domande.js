@@ -1,3 +1,11 @@
+function checkBoxValidate (){
+  var accept = document.form1.accetto.checked;
+  if (accept === checked) {
+      window.location.href = "domande.html";
+} else {
+    alert('Non accettato');}
+}
+
 const questions = [
     {
       category: "Science: Computers",
