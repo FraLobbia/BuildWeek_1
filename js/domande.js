@@ -190,48 +190,20 @@ function nextQuestion(indiceCurrentQuestion){
 
 //-------------------------------------------------------------------------------------
 
-/* function tempo(indiceCurrentQuestion) {
+  function tempo(indiceCurrentQuestion) {
   clearInterval(timer);
-  tempoRimanente =60;
+  tempoRimanente =10;
   aggiornaTempo();
   timer = setInterval(function() {                     
     aggiornaTempo();
-    if (tempoRimanente === -2) {
+    if (tempoRimanente === -1) {
       clearInterval(timer);
       arrayRisposteCorrette.push(0);  
       console.log("risposte corrette: " + arrayRisposteCorrette);
       sceltaOpzione(indiceCurrentQuestion);
     }
   }, 1000);
-} */
-
-//---------------------------------------------------------------------------------
-let tempoRimanente = 10;
-
-function tempo(indiceCurrentQuestion) {
-  clearInterval(timer);
-  tempoRimanente = 10;
-  const initialOffset = 440;
-  let i = tempoRimanente;
-  const progressBar = $('.circle_animation');
-  progressBar.css('stroke-dashoffset', initialOffset + (i * (initialOffset / 10)));
-  aggiornaTempo();
-  $('h2').text(i); 
-  timer = setInterval(function () {
-    i--;
-    if (i === 0) {
-      clearInterval(timer);
-      arrayRisposteCorrette.push(0);
-      console.log("risposte corrette: " + arrayRisposteCorrette);
-      sceltaOpzione(indiceCurrentQuestion);
-    } else {
-      progressBar.css('stroke-dashoffset', initialOffset + (i * (initialOffset / 10)));
-      aggiornaTempo();
-    }
-    progressBar.css('stroke-dashoffset', initialOffset + (i * (initialOffset / 10)));
-    $('h2').text(i); 
-  }, 1000);
-}
+} 
 
 
 //--------------------------------------------------------------------------------------
@@ -260,8 +232,44 @@ function aggiornaTempo() {
 
 function fine() {
   clearInterval(timer);
-  window.location.href = "welcome.html";
+  const main = document.querySelector('main');
+  const footer = document.querySelector('footer')
+  const tempo = document.getElementsByClassName('timer');
+    main.innerHTML = '';
+    footer.innerHTML = '';
+    tempo.innerHTML = '';
 }
 
 
 nextQuestion(indiceDiPartenza);
+
+
+//---------------------------------------------------------------------------------
+/*
+let tempoRimanente = 10;
+
+ function tempo(indiceCurrentQuestion) {
+  clearInterval(timer);
+  tempoRimanente = 10;
+  const initialOffset = 440;
+  let i = tempoRimanente;
+  const progressBar = $('.circle_animation');
+  progressBar.css('stroke-dashoffset', initialOffset + (i * (initialOffset / 10)));
+  aggiornaTempo();
+  $('h2').text(i); 
+  timer = setInterval(function () {
+    i--;
+    if (i === 0) {
+      clearInterval(timer);
+      arrayRisposteCorrette.push(0);
+      console.log("risposte corrette: " + arrayRisposteCorrette);
+      sceltaOpzione(indiceCurrentQuestion);
+    } else {
+      progressBar.css('stroke-dashoffset', initialOffset + (i * (initialOffset / 10)));
+      aggiornaTempo();
+    }
+    progressBar.css('stroke-dashoffset', initialOffset + (i * (initialOffset / 10)));
+    $('h2').text(i); 
+  }, 1000);
+} */
+
