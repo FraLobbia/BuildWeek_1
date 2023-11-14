@@ -1,10 +1,11 @@
-function checkBoxValidate (){
-  var accept = document.form1.accetto.checked;
-  if (accept === checked) {
-      window.location.href = "domande.html";
-} else {
-    alert('Non accettato');}
+function checkBoxValidate (){ 
+  var accetto = document.form1.accetto.checked;
+  if(accetto === true) 
+    window.location.href = "domande.html";
+  else
+    alert("non accettato");
 }
+
 
 const questions = [
     {
