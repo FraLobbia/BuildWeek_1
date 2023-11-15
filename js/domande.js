@@ -288,7 +288,7 @@ function creaPagina3(main, footer) {
   h5.appendChild(span);
 
   const spanSxBasso = document.createElement('span');
-  spanSxBasso.innerHTML = '<br>' + sommaRisposteCorrette + '/' + questions.length;
+  spanSxBasso.innerHTML = '<br>' + sommaRisposteCorrette + '/' + questions.length + 'questions';
   spanSxBasso.classList.add("risposteGiuste");
   h5.appendChild(spanSxBasso);
 
@@ -312,7 +312,7 @@ function creaPagina3(main, footer) {
   h5Destra.appendChild(spanDestro);
 
   const spanDxBasso = document.createElement('span');
-  spanDxBasso.innerHTML = '<br>' + sommaRisposteSbagliate + '/' + questions.length;
+  spanDxBasso.innerHTML = '<br>' + sommaRisposteSbagliate + '/' + questions.length + 'questions';
   spanDxBasso.classList.add("risposteSbagliate");
   h5Destra.appendChild(spanDxBasso);
 

@@ -81,6 +81,14 @@ footer span {
 }
 
 
+/* ----------IMPOSTAZIONE FORM -----------*/
+
+#form1 { 
+    display: flex;
+    position: relative;
+}
+
+
 /* ----------checkbox -----------*/
 
 
@@ -94,16 +102,61 @@ input[type="checkbox"] {  /* ----------RESET-----------*/
          cursor: pointer;  
 
   }
-
-    .custom-checkbox {  /* ----------STILE-----------*/
-
-        border-color: rgb(255, 255, 255);
-        border-style: solid;
-        border-width: 3px;
-        box-shadow: 2px 4px 5px rgba(0, 0, 0, 0.2);
-        
-      }
   
+     /* stile*/
+
+     :root { 
+
+        --form-control-color: aliceblue;
+      }
+
+     /* INPUT */
+
+     input[type="checkbox"] {
+
+         -webkit-appearance: none;
+         appearance: none;
+         background-color: transparent;
+         margin: 0;
+
+             width: 2em;
+             height: 2em;
+             border: 0.20em solid;
+             color: aliceblue;
+   
+                 place-content: center;
+  
+
+     } 
+
+      input[type="checkbox"]::before {
+
+         content: "";
+         width: 1em;
+         height: 1em;
+
+             transform: scale(0);
+             transform-origin: bottom left;
+             transition: 120ms transform ease-in-out;
+             box-shadow: inset 1em 1em var(--form-control-color);
+
+     
+     }
+  
+     input[type="checkbox"]:checked::before {
+     transform: scale(1);
+     }
+  
+     input[type="checkbox"]:focus {
+     outline: max(2px, 0.15em) solid currentColor;
+     outline-offset: max(2px, 0.15em);
+     }
+
+
+     #campoPolicy {
+         margin-top: 50px;
+    }
+     
 
 
 /* seconda pagina */
@@ -248,7 +301,14 @@ hr {
     text-align: center;
     display: inline-block;
     width: 33.33%;
-}
-.div3 {
     margin-top: 8vh;
 }
+
+.div2 {
+    text-align: left;
+}
+
+.div4 {
+    text-align: right;
+}
+
