@@ -109,6 +109,11 @@ input[type="checkbox"] {  /* ----------RESET-----------*/
          cursor: pointer;  
 
   }
+
+  .alert {
+    display: flex;
+    align-items: center;
+    }
   
      /* stile*/
 

@@ -3,8 +3,9 @@ function checkBoxValidate (){
   if(accetto === true) 
     window.location.href = "domande.html";
   else
-    alert("non accettato");
+    alert("Accetta i termini di servizio");
 }
+
 
 
 const questions = [
