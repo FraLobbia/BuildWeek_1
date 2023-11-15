@@ -157,9 +157,9 @@ footer p {
     width: 100%;
 }
 
-/*svg {
+#contatore_tempo {
     transform: rotate(-90deg);
-}*/
+}
 
 .circle_animation {
     stroke-dasharray: 440;
@@ -202,19 +202,19 @@ h4 {
 #star-container svg:hover,
 #star-container svg.selected {
     fill: #00FFFF;
-
 }
 
-footer {
+.info-footer {
     text-align: center;
 }
 
-#info {
+#info-button {
     width: 300px;
     height: 80px;
     background-color: #00ffff;
     font-size: 28px;
     font-weight: 700;
+    text-align: center;
     box-shadow: 1px 1px 50px #00ffffb7;
     cursor: pointer;
 }
@@ -224,6 +224,13 @@ hr {
     border: 1.5px solid #C5138F;
 }
 
-#commento {
+#comment-container {
+    padding: 0 13vw 0 13vw;
+}
+
+#comment {
+    color: white;
+    font-size: 18px;
+    margin-left: 35px;
     background-color: transparent;
 }

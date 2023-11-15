@@ -1,3 +1,12 @@
+function checkBoxValidate() {
+  var accept = document.form1.accetto.checked;
+  if (accept === checked) {
+    window.location.href = "domande.html";
+  } else {
+    alert('Non accettato');
+  }
+}
+
 const questions = [
   {
     category: "Science: Computers",
@@ -106,7 +115,7 @@ let timer;
 function nextQuestion(indiceCurrentQuestion) {
   // definisco l'indice della domanda che voglio
   // var indiceCurrentQuestion = Math.floor(Math.random() * questions.length);
-  // tempo(indiceCurrentQuestion);
+  tempo(indiceCurrentQuestion);
   // scrivo nello span del footer l'indice della domanda
   var domandaCorrente = document.getElementById('domanda_corrente');
   domandaCorrente.innerText = indiceCurrentQuestion + 1;
@@ -179,48 +188,52 @@ function nextQuestion(indiceCurrentQuestion) {
   });
 
 };
-//-------------------------------------------------------------------------------------
-var time = 10;
-var initialOffset = '440';
-var i = 0
-
-/* Need initial run as interval hasn't yet occured... */
-$('.circle_animation').css('stroke-dashoffset', initialOffset - (1 * (initialOffset / time)));
-
-var interval = setInterval(function () {
-  $('h2').text(time - i);
-  if (i == time) {
-    clearInterval(interval);
-    return;
-  }
-  $('.circle_animation').css('stroke-dashoffset', initialOffset - ((i + 1) * (initialOffset / time)));
-  i++;
-}, 1000);
 
 //-------------------------------------------------------------------------------------
-if (tempoRimanente === -2) {
+
+/* function tempo(indiceCurrentQuestion) {
   clearInterval(timer);
-  arrayRisposteCorrette.push(0);
-  console.log("risposte corrette: " + arrayRisposteCorrette);
-  sceltaOpzione(indiceCurrentQuestion);
+  tempoRimanente =60;
+  aggiornaTempo();
+  timer = setInterval(function() {                     
+    aggiornaTempo();
+    if (tempoRimanente === -2) {
+      clearInterval(timer);
+      arrayRisposteCorrette.push(0);  
+      console.log("risposte corrette: " + arrayRisposteCorrette);
+      sceltaOpzione(indiceCurrentQuestion);
+    }
+  }, 1000);
+} */
+
+//---------------------------------------------------------------------------------
+let tempoRimanente = 10;
+
+function tempo(indiceCurrentQuestion) {
+  clearInterval(timer);
+  tempoRimanente = 10;
+  const initialOffset = 440;
+  let i = tempoRimanente;
+  const progressBar = $('.circle_animation');
+  progressBar.css('stroke-dashoffset', initialOffset + (i * (initialOffset / 10)));
+  aggiornaTempo();
+  $('h2').text(i);
+  timer = setInterval(function () {
+    i--;
+    if (i === 0) {
+      clearInterval(timer);
+      arrayRisposteCorrette.push(0);
+      console.log("risposte corrette: " + arrayRisposteCorrette);
+      sceltaOpzione(indiceCurrentQuestion);
+    } else {
+      progressBar.css('stroke-dashoffset', initialOffset + (i * (initialOffset / 10)));
+      aggiornaTempo();
+    }
+    progressBar.css('stroke-dashoffset', initialOffset + (i * (initialOffset / 10)));
+    $('h2').text(i);
+  }, 1000);
 }
-//-------------------------------------------------------------------------------------
 
-
-/* time out tra una domanda e un altra */
-// function tempo(indiceCurrentQuestion) {
-//   clearInterval(timer);  
-//   aggiornaTempo();
-//   timer = setInterval(function() {                     
-//     aggiornaTempo();
-//     if (tempoRimanente === -2) {
-//       clearInterval(timer);
-//       arrayRisposteCorrette.push(0);  
-//       console.log("risposte corrette: " + arrayRisposteCorrette);
-//       sceltaOpzione(indiceCurrentQuestion);
-//     }
-//   }, 1000);
-// }
 
 //--------------------------------------------------------------------------------------
 
@@ -230,7 +243,9 @@ function sceltaOpzione(indiceCurrentQuestion) {
     fine();
   } else {
     indiceCurrentQuestion++;
-    nextQuestion(indiceCurrentQuestion);
+    setTimeout(function () {
+      nextQuestion(indiceCurrentQuestion);
+    }, 500);
   }
 }
 
