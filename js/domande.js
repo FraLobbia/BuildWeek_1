@@ -1,12 +1,19 @@
 function checkBoxValidate() {
-  var accept = document.form1.accetto.checked;
-  if (accept === checked) {
+  var accetto = document.form1.accetto.checked;
+  if (accetto === false)
+    alert("Accetta i Termini di Servizio");
+  else
     window.location.href = "domande.html";
-  } else {
-    alert('Non accettato');
-  }
 }
 
+function checkFunction() {
+  const buttonProceed = document.getElementById("proceed");
+  buttonProceed.addEventListener("click", function () {
+    alert("Accetta i termini di servizio");
+  });
+}
+
+//---------------------------------------//
 const questions = [
   {
     category: "Science: Computers",
@@ -108,7 +115,7 @@ const questions = [
 ];
 
 const arrayRisposteCorrette = []; // array che serve a memorizzare il totale delle risposte corrette
-var indiceDiPartenza = 0;
+var indiceDiPartenza = 0; // mi serve per inizializzare le domande
 let timer;
 
 // ----------------------------------------------------- dichiarazioni ----------------------------------------------------------------------------------------------
@@ -142,7 +149,6 @@ function nextQuestion(indiceCurrentQuestion) {
   var opzione_4 = document.getElementById('4');
 
 
-
   // definisco nelle variabili il testo delle opzioni per poi scriverle più sotto con il literal
   opzione1Text = opzioni[0];
   opzione2Text = opzioni[1];
@@ -172,16 +178,17 @@ function nextQuestion(indiceCurrentQuestion) {
   allButtons.forEach(function (button) {
     button.addEventListener("click", function () {
       var risposta = this.textContent;
+      button.classList.add('rispostaSelezionata');
       if (questions[indiceCurrentQuestion].correct_answer === risposta) {
         arrayRisposteCorrette.push(1);
         console.log("risposte corrette: " + arrayRisposteCorrette);
-        clearInterval(timer);
         sceltaOpzione(indiceCurrentQuestion)
+        clearInterval(timer);
       } else {
         arrayRisposteCorrette.push(0);
         console.log("risposte corrette: " + arrayRisposteCorrette);
-        clearInterval(timer);
         sceltaOpzione(indiceCurrentQuestion)
+        clearInterval(timer);
       }
 
     });
@@ -191,20 +198,20 @@ function nextQuestion(indiceCurrentQuestion) {
 
 //-------------------------------------------------------------------------------------
 
-/* function tempo(indiceCurrentQuestion) {
+function tempo(indiceCurrentQuestion) {
   clearInterval(timer);
-  tempoRimanente =60;
+  tempoRimanente = 60;
   aggiornaTempo();
-  timer = setInterval(function() {                     
+  timer = setInterval(function () {
     aggiornaTempo();
-    if (tempoRimanente === -2) {
+    if (tempoRimanente === -1) {
       clearInterval(timer);
-      arrayRisposteCorrette.push(0);  
+      arrayRisposteCorrette.push(0);
       console.log("risposte corrette: " + arrayRisposteCorrette);
       sceltaOpzione(indiceCurrentQuestion);
     }
   }, 1000);
-} */
+} * /
 
 //---------------------------------------------------------------------------------
 let tempoRimanente = 10;
@@ -238,6 +245,8 @@ function tempo(indiceCurrentQuestion) {
 //--------------------------------------------------------------------------------------
 
 function sceltaOpzione(indiceCurrentQuestion) {
+
+
   let y = questions.length
   if (indiceCurrentQuestion === y - 1) {
     fine();
@@ -261,8 +270,130 @@ function aggiornaTempo() {
 
 function fine() {
   clearInterval(timer);
-  window.location.href = "welcome.html";
+  const main = document.querySelector('main');
+  const footer = document.querySelector('footer')
+  const tempo = document.getElementById('circleTimer');
+  main.innerHTML = '';
+  footer.innerHTML = '';
+  tempo.parentNode.removeChild(tempo);
+  creaPagina3(main, footer);
 }
 
 
+//---------------------------------------------------------------------------------------------
+
+function creaPagina3(main, footer) {
+  const sommaRisposteCorrette = arrayRisposteCorrette.reduce(function (acc, valore) {
+    return acc + valore;
+  }, 0);
+  console.log(sommaRisposteCorrette);
+
+  const sommaRisposteSbagliate = questions.length - sommaRisposteCorrette;
+  console.log(sommaRisposteSbagliate);
+
+  const percentualeRisposteCorrette = sommaRisposteCorrette / questions.length * 100;
+  console.log(percentualeRisposteCorrette);
+
+  const percentualeRisposteSbagliate = sommaRisposteSbagliate / questions.length * 100;
+
+  // parte alta post-domande -------------------------------------------------------
+
+  const titoloResults = document.createElement('titoloResults');
+  titoloResults.classList.add("titoloResults");
+  main.appendChild(titoloResults);
+
+  const results = document.createElement('h4');
+  results.innerHTML = 'Results';
+  results.classList.add("results");
+  titoloResults.appendChild(results);
+
+  const sottoResult = document.createElement('p');
+  sottoResult.innerHTML = 'The summar of your answers:';
+  sottoResult.classList.add("sottoResult");
+  titoloResults.appendChild(sottoResult);
+
+  // lato sinistro post-domande --------------------------------------------------------------
+
+  const bloccoCorrect = document.createElement('div');
+  bloccoCorrect.classList.add("bloccoCorrect");
+  main.appendChild(bloccoCorrect);
+
+  const paragrafoSxAlto = document.createElement('p');
+  paragrafoSxAlto.innerHTML = 'Correct';
+  paragrafoSxAlto.classList.add("paragrafoDxSxAlto");
+  bloccoCorrect.appendChild(paragrafoSxAlto);
+
+  const paragrafoSx = document.createElement('p');
+  paragrafoSx.innerHTML = percentualeRisposteCorrette + '%';
+  paragrafoSx.classList.add("percentuale");
+  bloccoCorrect.appendChild(paragrafoSx);
+
+  const spanSxBasso = document.createElement('span');
+  spanSxBasso.innerHTML = sommaRisposteCorrette + '/' + questions.length + ' questions';
+  spanSxBasso.classList.add("risposte");
+  bloccoCorrect.appendChild(spanSxBasso);
+
+  // centro post-domande --------------------------------------------------------------
+
+  const bloccoCentrale = document.createElement('div');
+  bloccoCentrale.classList.add("bloccoCentrale");
+  main.appendChild(bloccoCentrale);
+
+  const congratulations = document.createElement('h5');
+  congratulations.classList.add("congratulations");
+  bloccoCentrale.appendChild(congratulations);
+
+  const passed = document.createElement('span');
+  passed.classList.add("passed");
+
+
+  const paragrafoCentrale = document.createElement('p');
+  paragrafoCentrale.classList.add("paragrafoCentrale");
+  bloccoCentrale.appendChild(paragrafoCentrale);
+
+  if (percentualeRisposteCorrette >= 60) {
+    congratulations.innerHTML = "Congratulations!";
+    congratulations.appendChild(passed);
+    passed.innerHTML = "<br> You passed the exam.";
+    paragrafoCentrale.innerHTML = "We'll send you the certificate <br> in few minutes. <br> Check your email (including <br> promotions / spam folder)";
+  } else {
+    congratulations.innerHTML = "andato male!";
+    congratulations.appendChild(passed);
+    passed.innerHTML = "<br> Non vado avanti";
+    paragrafoCentrale.innerHTML = "We'll send you the certificate <br> in few minutes. <br> Check your email (including <br> promotions / spam folder)";
+  }
+
+
+  // lato destro post-domande--------------------------------------------------------------
+
+  const bloccoWrong = document.createElement('div');
+  bloccoWrong.classList.add("bloccoWrong");
+  main.appendChild(bloccoWrong);
+
+  const paragrafoDxAlto = document.createElement('p');
+  paragrafoDxAlto.innerHTML = 'Wrong';
+  paragrafoDxAlto.classList.add("paragrafoDxSxAlto");
+  bloccoWrong.appendChild(paragrafoDxAlto);
+
+  const paragrafoDxBasso = document.createElement('p');
+  paragrafoDxBasso.innerHTML = percentualeRisposteSbagliate + '%';
+  paragrafoDxBasso.classList.add("percentuale");
+  bloccoWrong.appendChild(paragrafoDxBasso);
+
+  const spanDxBasso = document.createElement('p');
+  spanDxBasso.innerHTML = sommaRisposteSbagliate + '/' + questions.length + ' questions';
+  spanDxBasso.classList.add("risposte");
+  bloccoWrong.appendChild(spanDxBasso);
+
+  // footer -----------------------------------------------------------------------------------
+  const rateUs = document.createElement('button');
+  rateUs.innerHTML = 'RATE US';
+  rateUs.classList.add("rateUs");
+  footer.appendChild(rateUs);
+}
+
 nextQuestion(indiceDiPartenza);
+
+
+//---------------------------------------------------------------------------------
+

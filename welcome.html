@@ -26,13 +26,23 @@
         </ul>
     </main>
     <footer>
+
         <form id="form1" action="domande.html">
-            <label for="accept">
-                <input type="checkbox" id="accept" name="accept" required>
-            </label> <!-- label ??? (per accessibilità) -->
-            <span>I promise to answer myself without help from anyone</span>
-            <button id="proceed" onclick="checkBoxValidate()">PROCEED</button>
+
+            <div id="campoPolicy">
+                <label class="custom-checkbox" for="accept">
+                    <input type="checkbox" id="accetto" name="accept" required>
+                </label><span>I promise to answer myself without help from anyone</span>
+
+            </div>
+
+            <button id="proceed" onclick="checkFunction()">PROCEED</button>
+
+
+
         </form>
+
+
     </footer>
 </body>
 
