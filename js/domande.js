@@ -334,8 +334,6 @@ function creaPagina3(main, footer) {
   }
 
 
-
-
   // lato destro post-domande--------------------------------------------------------------
 
   const bloccoWrong = document.createElement('div');
