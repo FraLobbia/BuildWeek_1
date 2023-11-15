@@ -82,11 +82,18 @@ footer span {
 
 
 /* ----------IMPOSTAZIONE FORM -----------*/
+/* ----------IMPOSTAZIONE FORM -----------*/
 
 #form1 { 
     display: flex;
     position: relative;
 }
+
+#campoPolicy{
+    
+    display: flex;
+    align-items: center;
+  }
 
 
 /* ----------checkbox -----------*/
@@ -124,6 +131,7 @@ input[type="checkbox"] {  /* ----------RESET-----------*/
              border: 0.20em solid;
              color: aliceblue;
    
+                 display: grid;
                  place-content: center;
   
 
@@ -151,12 +159,15 @@ input[type="checkbox"] {  /* ----------RESET-----------*/
      outline: max(2px, 0.15em) solid currentColor;
      outline-offset: max(2px, 0.15em);
      }
+  
 
-
-     #campoPolicy {
-         margin-top: 50px;
-    }
      
+     
+     
+     
+
+
+
 
 
 /* seconda pagina */
