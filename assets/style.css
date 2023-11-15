@@ -80,8 +80,6 @@ footer span {
     cursor: pointer;
 }
 
-
-/* ----------IMPOSTAZIONE FORM -----------*/
 /* ----------IMPOSTAZIONE FORM -----------*/
 
 #form1 { 
@@ -94,7 +92,6 @@ footer span {
     display: flex;
     align-items: center;
   }
-
 
 /* ----------checkbox -----------*/
 
@@ -109,11 +106,6 @@ input[type="checkbox"] {  /* ----------RESET-----------*/
          cursor: pointer;  
 
   }
-
-  .alert {
-    display: flex;
-    align-items: center;
-    }
   
      /* stile*/
 

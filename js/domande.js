@@ -1,13 +1,19 @@
-function checkBoxValidate (){ 
+function checkBoxValidate () {
   var accetto = document.form1.accetto.checked;
-  if(accetto === true) 
-    window.location.href = "domande.html";
+  if(accetto === false) 
+      alert("Accetta i Termini di Servizio");
   else
-    alert("Accetta i termini di servizio");
+      window.location.href = "domande.html";
 }
 
+function checkFunction() {
+  const buttonProceed = document.getElementById("proceed");
+  buttonProceed.addEventListener("click", function(){
+       alert("Accetta i termini di servizio");
+   });
+}
 
-
+//---------------------------------------//
 const questions = [
     {
       category: "Science: Computers",
