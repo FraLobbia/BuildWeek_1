@@ -1,13 +1,19 @@
-function checkBoxValidate (){ 
+function checkBoxValidate () {
   var accetto = document.form1.accetto.checked;
-  if(accetto === true) 
-    window.location.href = "domande.html";
+  if(accetto === false) 
+      alert("Accetta i Termini di Servizio");
   else
-    alert("Accetta i termini di servizio");
+      window.location.href = "domande.html";
 }
 
+function checkFunction() {
+  const buttonProceed = document.getElementById("proceed");
+  buttonProceed.addEventListener("click", function(){
+       alert("Accetta i termini di servizio");
+   });
+}
 
-
+//---------------------------------------//
 const questions = [
     {
       category: "Science: Computers",
@@ -262,63 +268,96 @@ function creaPagina3(main, footer) {
 
   const percentualeRisposteSbagliate = sommaRisposteSbagliate/questions.length*100;
 
-  const div1 = document.createElement('div');
-  div1.classList.add("div1");
-  main.appendChild(div1);
+  // parte alta post-domande -------------------------------------------------------
 
-  const h4 = document.createElement('h4');
-  h4.innerHTML = 'Results';
-  h4.classList.add("h1new");
-  div1.appendChild(h4);
+  const titoloResults = document.createElement('titoloResults');
+  titoloResults.classList.add("titoloResults");
+  main.appendChild(titoloResults);
+
+  const results = document.createElement('h4');
+  results.innerHTML = 'Results';
+  results.classList.add("results");
+  titoloResults.appendChild(results);
   
-  const p = document.createElement('p');
-  p.innerHTML = 'The summar of your answers:';
-  p.classList.add("pnew");
-  div1.appendChild(p);
+  const sottoResult = document.createElement('p');
+  sottoResult.innerHTML = 'The summar of your answers:';
+  sottoResult.classList.add("sottoResult");
+  titoloResults.appendChild(sottoResult);
 
-  const div2 = document.createElement('div');
-  div2.classList.add("div2");
-  main.appendChild(div2);
+// lato sinistro post-domande --------------------------------------------------------------
+  
+  const bloccoCorrect = document.createElement('div');
+  bloccoCorrect.classList.add("bloccoCorrect");
+  main.appendChild(bloccoCorrect);
 
-  const h5 = document.createElement('h5');
-  h5.innerHTML = 'Correct';
-  h5.classList.add("h5");
-  div2.appendChild(h5);
+  const paragrafoSxAlto = document.createElement('p');
+  paragrafoSxAlto.innerHTML = 'Correct';
+  paragrafoSxAlto.classList.add("paragrafoDxSxAlto");
+  bloccoCorrect.appendChild(paragrafoSxAlto);
 
-  const span = document.createElement('span');
-  span.innerHTML = '<br>' + percentualeRisposteCorrette + '%';
-  span.classList.add("percentualeGiuste");
-  h5.appendChild(span);
+  const paragrafoSx = document.createElement('p');
+  paragrafoSx.innerHTML = percentualeRisposteCorrette + '%';
+  paragrafoSx.classList.add("percentuale");
+  bloccoCorrect.appendChild(paragrafoSx);
 
   const spanSxBasso = document.createElement('span');
-  spanSxBasso.innerHTML = '<br>' + sommaRisposteCorrette + '/' + questions.length + 'questions';
-  spanSxBasso.classList.add("risposteGiuste");
-  h5.appendChild(spanSxBasso);
+  spanSxBasso.innerHTML =  sommaRisposteCorrette + '/' + questions.length + ' questions';
+  spanSxBasso.classList.add("risposte");
+  bloccoCorrect.appendChild(spanSxBasso);
 
-  const div3 = document.createElement('div');
-  div3.innerHTML = 'Nuovo div3';
-  div3.classList.add("div3");
-  main.appendChild(div3);
+  // centro post-domande --------------------------------------------------------------
 
-  const div4 = document.createElement('div');
-  div4.classList.add("div4");
-  main.appendChild(div4);
+  const bloccoCentrale = document.createElement('div');
+  bloccoCentrale.classList.add("bloccoCentrale");
+  main.appendChild(bloccoCentrale);
 
-  const h5Destra = document.createElement('h5');
-  h5Destra.innerHTML = 'Wrong';
-  h5Destra.classList.add("h5Destra");
-  div4.appendChild(h5Destra);
+  const congratulations = document.createElement('h5');
+  congratulations.classList.add("congratulations");
+  bloccoCentrale.appendChild(congratulations);
 
-  const spanDestro = document.createElement('span');
-  spanDestro.innerHTML = '<br>' + percentualeRisposteSbagliate + '%';
-  spanDestro.classList.add("percentualeSbagliate");
-  h5Destra.appendChild(spanDestro);
+  const passed = document.createElement('span');
+  passed.classList.add("passed");
+  
 
-  const spanDxBasso = document.createElement('span');
-  spanDxBasso.innerHTML = '<br>' + sommaRisposteSbagliate + '/' + questions.length + 'questions';
-  spanDxBasso.classList.add("risposteSbagliate");
-  h5Destra.appendChild(spanDxBasso);
+  const paragrafoCentrale = document.createElement('p');
+  paragrafoCentrale.classList.add("paragrafoCentrale");
+  bloccoCentrale.appendChild(paragrafoCentrale);
 
+  if (percentualeRisposteCorrette >= 60) {
+    congratulations.innerHTML = "Congratulations!";
+    congratulations.appendChild(passed);
+    passed.innerHTML = "<br> You passed the exam.";
+    paragrafoCentrale.innerHTML = "We'll send you the certificate <br> in few minutes. <br> Check your email (including <br> promotions / spam folder)";
+  } else {
+    congratulations.innerHTML = "andato male!";
+    congratulations.appendChild(passed);
+    passed.innerHTML = "<br> Non vado avanti";
+    paragrafoCentrale.innerHTML = "We'll send you the certificate <br> in few minutes. <br> Check your email (including <br> promotions / spam folder)";
+  }
+
+
+  // lato destro post-domande--------------------------------------------------------------
+
+  const bloccoWrong = document.createElement('div');
+  bloccoWrong.classList.add("bloccoWrong");
+  main.appendChild(bloccoWrong);
+
+  const paragrafoDxAlto = document.createElement('p');
+  paragrafoDxAlto.innerHTML = 'Wrong';
+  paragrafoDxAlto.classList.add("paragrafoDxSxAlto");
+  bloccoWrong.appendChild(paragrafoDxAlto);
+
+  const paragrafoDxBasso = document.createElement('p');
+  paragrafoDxBasso.innerHTML = percentualeRisposteSbagliate + '%';
+  paragrafoDxBasso.classList.add("percentuale");
+  bloccoWrong.appendChild(paragrafoDxBasso);
+
+  const spanDxBasso = document.createElement('p');
+  spanDxBasso.innerHTML =  sommaRisposteSbagliate + '/' + questions.length + ' questions';
+  spanDxBasso.classList.add("risposte");
+  bloccoWrong.appendChild(spanDxBasso);
+  
+  // footer -----------------------------------------------------------------------------------
   const rateUs = document.createElement('button');
   rateUs.innerHTML = 'RATE US';
   rateUs.classList.add("rateUs");

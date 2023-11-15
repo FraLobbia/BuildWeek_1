@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 
 body {
     background-image: url(./bg.jpg);
@@ -80,8 +80,6 @@ footer span {
     cursor: pointer;
 }
 
-
-/* ----------IMPOSTAZIONE FORM -----------*/
 /* ----------IMPOSTAZIONE FORM -----------*/
 
 #form1 { 
@@ -94,7 +92,6 @@ footer span {
     display: flex;
     align-items: center;
   }
-
 
 /* ----------checkbox -----------*/
 
@@ -109,11 +106,6 @@ input[type="checkbox"] {  /* ----------RESET-----------*/
          cursor: pointer;  
 
   }
-
-  .alert {
-    display: flex;
-    align-items: center;
-    }
   
      /* stile*/
 
@@ -322,21 +314,50 @@ hr {
 
 /* ------------ Pagina risultati--------------- */
 
-.div1 {
+.titoloResults {
     text-align: center;
 }
-.div2, .div3, .div4 {
+.results {
+    margin-top: 20px;
+    margin-bottom: 5px;
+    font-size: 42px;
+}
+.sottoResult {
+    font-size: 22px;
+}
+.bloccoCorrect, .bloccoCentrale, .bloccoWrong {
     text-align: center;
     display: inline-block;
-    width: 33.33%;
-    margin-top: 8vh;
+    margin-top: 20px;
 }
-
-.div2 {
+.bloccoCentrale {
+    width: 34%;
+}
+.bloccoCorrect {
     text-align: left;
+    width: 33%;
 }
-
-.div4 {
+.bloccoCorrect p {
+    line-height: 1;
+}
+.bloccoWrong {
     text-align: right;
+    width: 33%;
 }
-
+.bloccoWrong p {
+    line-height: 1;
+}
+.paragrafoDxSxAlto {
+    margin: 0;
+    font-size: 42px;
+    font-weight: 400;
+}
+.percentuale {
+    font-weight: 800;
+    font-size: 40px;
+    margin-bottom: 5px;
+}
+.risposte {
+    font-size: 15px;
+    font-weight: 300;
+}
