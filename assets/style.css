@@ -55,10 +55,11 @@ footer {
     margin-top: 100px;
 }
 
-input {
-    border: 1px;
-    /* opacity: 0; lo fa diventare trasparente, da capire come fare bordo*/
-
+input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    opacity: 0.5;
+    border: 2px solid white;
 }
 
 footer span {
@@ -233,4 +234,5 @@ hr {
     font-size: 18px;
     margin-left: 35px;
     background-color: transparent;
+    border: none;
 }
