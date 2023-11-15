@@ -109,7 +109,7 @@ const questions = [
   ];
 
 const arrayRisposteCorrette = []; // array che serve a memorizzare il totale delle risposte corrette
-var indiceDiPartenza = 0;
+var indiceDiPartenza = 0; // mi serve per inizializzare le domande
 let timer;
 
 // ----------------------------------------------------- dichiarazioni ----------------------------------------------------------------------------------------------
@@ -143,7 +143,6 @@ function nextQuestion(indiceCurrentQuestion){
     var opzione_4 = document.getElementById('4');
 
 
-
     // definisco nelle variabili il testo delle opzioni per poi scriverle più sotto con il literal
     opzione1Text = opzioni[0];
     opzione2Text = opzioni[1];
@@ -173,16 +172,17 @@ function nextQuestion(indiceCurrentQuestion){
     allButtons.forEach(function(button) {
       button.addEventListener("click", function () {
           var risposta = this.textContent;
+          button.classList.add('rispostaSelezionata');
           if (questions[indiceCurrentQuestion].correct_answer === risposta) {
               arrayRisposteCorrette.push(1);
               console.log("risposte corrette: " + arrayRisposteCorrette);
-              clearInterval(timer);
               sceltaOpzione(indiceCurrentQuestion)
+              clearInterval(timer);
           } else {
               arrayRisposteCorrette.push(0);
               console.log("risposte corrette: " + arrayRisposteCorrette);
-              clearInterval(timer); 
               sceltaOpzione(indiceCurrentQuestion)
+              clearInterval(timer); 
           }
           
       });
@@ -194,7 +194,7 @@ function nextQuestion(indiceCurrentQuestion){
 
   function tempo(indiceCurrentQuestion) {
   clearInterval(timer);
-  tempoRimanente =10;
+  tempoRimanente = 60 ;
   aggiornaTempo();
   timer = setInterval(function() {                     
     aggiornaTempo();
@@ -211,6 +211,8 @@ function nextQuestion(indiceCurrentQuestion){
 //--------------------------------------------------------------------------------------
 
 function sceltaOpzione(indiceCurrentQuestion)  {
+
+
   let y = questions.length
   if (indiceCurrentQuestion === y - 1) {
     fine();

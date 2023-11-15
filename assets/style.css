@@ -177,6 +177,7 @@ input[type="checkbox"] {  /* ----------RESET-----------*/
 
 /* seconda pagina */
 
+
 #circleTimer {
     border: 15px solid #00ffff;
     width: 110px;
@@ -202,8 +203,9 @@ h3 {
     text-align: center;
 }
 section {
+    max-width: 900px;
     text-align: center;
-    margin: 120px;
+    margin: 120px auto;
 }
 
 section div {
@@ -220,8 +222,10 @@ section div {
     font-size: 20px;
     margin: 5px 20px 10px 20px;
     border: 1px solid white; /* da rivedere colore e sfumatura */
-    cursor: pointer;
-    
+    cursor: pointer;  
+}
+.rispostaSelezionata {
+    background-color: #c51390;
 }
 #footer_domanda {
     text-align: center;
@@ -237,8 +241,16 @@ footer p {
     font-size: 20px;
 }
 
-.correct {
-    color: green;
+.rateUs {
+    width: 270px;
+    height: 70px;
+    border: 3px solid white;
+    background-color: transparent;
+    color: white;
+    font-size: 1.5em;
+    font-weight: 900;
+    box-shadow: 1px 1px 50px #00ffff37;
+    cursor: pointer;
 }
 
 /* quarta pagina */
