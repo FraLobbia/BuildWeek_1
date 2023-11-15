@@ -216,7 +216,7 @@ function tempo(indiceCurrentQuestion) {
 //---------------------------------------------------------------------------------
 function tempo(indiceCurrentQuestion) {
   clearInterval(timer);
-  tempoRimanente = 60 ;
+  tempoRimanente = 60 ;             /*  ricordarsi di mettere timer a 60  */    
   aggiornaTempo();
   timer = setInterval(function() {                     
     aggiornaTempo();
