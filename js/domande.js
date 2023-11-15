@@ -239,13 +239,26 @@ function fine() {
     main.innerHTML = '';
     footer.innerHTML = '';
     tempo.parentNode.removeChild(tempo);
-    creaPagina3(main);
+    creaPagina3(main, footer);
 }
 
 
 //---------------------------------------------------------------------------------------------
 
-function creaPagina3(main) {
+function creaPagina3(main, footer) {
+  const sommaRisposteCorrette = arrayRisposteCorrette.reduce(function(acc, valore) {
+    return acc + valore;
+  }, 0);
+  console.log(sommaRisposteCorrette);
+
+  const sommaRisposteSbagliate = questions.length - sommaRisposteCorrette;
+  console.log(sommaRisposteSbagliate);
+
+  const percentualeRisposteCorrette = sommaRisposteCorrette/questions.length*100;
+  console.log(percentualeRisposteCorrette);
+
+  const percentualeRisposteSbagliate = sommaRisposteSbagliate/questions.length*100;
+
   const div1 = document.createElement('div');
   div1.classList.add("div1");
   main.appendChild(div1);
@@ -270,14 +283,14 @@ function creaPagina3(main) {
   div2.appendChild(h5);
 
   const span = document.createElement('span');
-  span.innerHTML = '<br> 70%';
-  span.classList.add("percentuale_giuste");
+  span.innerHTML = '<br>' + percentualeRisposteCorrette + '%';
+  span.classList.add("percentualeGiuste");
   h5.appendChild(span);
 
-  const spanSxbasso = document.createElement('span');
-  spanSxbasso.innerHTML = '<br> 7/10';
-  spanSxbasso.classList.add("risposte_giuste");
-  h5.appendChild(spanSxbasso);
+  const spanSxBasso = document.createElement('span');
+  spanSxBasso.innerHTML = '<br>' + sommaRisposteCorrette + '/' + questions.length;
+  spanSxBasso.classList.add("risposteGiuste");
+  h5.appendChild(spanSxBasso);
 
   const div3 = document.createElement('div');
   div3.innerHTML = 'Nuovo div3';
@@ -294,40 +307,23 @@ function creaPagina3(main) {
   div4.appendChild(h5Destra);
 
   const spanDestro = document.createElement('span');
-  spanDestro.innerHTML = '<br> 30%';
-  spanDestro.classList.add("percentuale_sbagliate");
+  spanDestro.innerHTML = '<br>' + percentualeRisposteSbagliate + '%';
+  spanDestro.classList.add("percentualeSbagliate");
   h5Destra.appendChild(spanDestro);
+
+  const spanDxBasso = document.createElement('span');
+  spanDxBasso.innerHTML = '<br>' + sommaRisposteSbagliate + '/' + questions.length;
+  spanDxBasso.classList.add("risposteSbagliate");
+  h5Destra.appendChild(spanDxBasso);
+
+  const rateUs = document.createElement('button');
+  rateUs.innerHTML = 'RATE US';
+  rateUs.classList.add("rateUs");
+  footer.appendChild(rateUs);
 }
 
 nextQuestion(indiceDiPartenza);
 
 
 //---------------------------------------------------------------------------------
-/*
-let tempoRimanente = 10;
-
- function tempo(indiceCurrentQuestion) {
-  clearInterval(timer);
-  tempoRimanente = 10;
-  const initialOffset = 440;
-  let i = tempoRimanente;
-  const progressBar = $('.circle_animation');
-  progressBar.css('stroke-dashoffset', initialOffset + (i * (initialOffset / 10)));
-  aggiornaTempo();
-  $('h2').text(i); 
-  timer = setInterval(function () {
-    i--;
-    if (i === 0) {
-      clearInterval(timer);
-      arrayRisposteCorrette.push(0);
-      console.log("risposte corrette: " + arrayRisposteCorrette);
-      sceltaOpzione(indiceCurrentQuestion);
-    } else {
-      progressBar.css('stroke-dashoffset', initialOffset + (i * (initialOffset / 10)));
-      aggiornaTempo();
-    }
-    progressBar.css('stroke-dashoffset', initialOffset + (i * (initialOffset / 10)));
-    $('h2').text(i); 
-  }, 1000);
-} */
 
