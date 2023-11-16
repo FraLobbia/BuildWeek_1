@@ -160,21 +160,11 @@ input[type="checkbox"]:focus {
 }
 
 
-
-
-
-
-
-
-
-
-
 /* seconda pagina */
 
 
 #circleTimer {
-    border: 15px solid #00ffff;
-    width: 110px;
+    width: 270px;
     position: relative;
     transform: translateY(-25%);
     left: 80%;
@@ -185,6 +175,8 @@ input[type="checkbox"]:focus {
     text-align: center;
     padding: 20px;
     font-size: small;
+    position: relative;
+    top: -185px;
 }
 
 #orologio {

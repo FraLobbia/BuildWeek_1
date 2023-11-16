@@ -197,6 +197,32 @@ function nextQuestion(indiceCurrentQuestion) {
 };
 
 //-------------------------------------------------------------------------------------
+var xValues = ["Tempo Rimanente", "Tempo passato"];
+var yValues = [60];
+var barColors = ["#00aba9","transparent"];
+myChart = new Chart("myChart", {
+  type: "doughnut",
+  data: {
+    datasets: [
+      {
+        backgroundColor: barColors,
+        data: yValues,
+        borderWidth: 0,
+      },
+    ],
+  },
+  options: {
+    tooltips: {
+      enabled:false
+    },
+    
+    title: {
+      display: true,
+    },
+    rotation: Math.PI,
+    hover: {mode:null}, 
+  },
+});
 
 function tempo(indiceCurrentQuestion) {
   clearInterval(timer);
@@ -204,6 +230,7 @@ function tempo(indiceCurrentQuestion) {
   aggiornaTempo();
   timer = setInterval(function () {
     aggiornaTempo();
+    aggiornaGrafico();
     if (tempoRimanente === -1) {
       clearInterval(timer);
       arrayRisposteCorrette.push(0);
@@ -212,22 +239,11 @@ function tempo(indiceCurrentQuestion) {
     }
   }, 1000);
 } 
-
-//---------------------------------------------------------------------------------
-function tempo(indiceCurrentQuestion) {
-  clearInterval(timer);
-  tempoRimanente = 60 ;             /*  ricordarsi di mettere timer a 60  */    
-  aggiornaTempo();
-  timer = setInterval(function() {                     
-    aggiornaTempo();
-    if (tempoRimanente === -1) {
-      clearInterval(timer);
-      arrayRisposteCorrette.push(0);  
-      console.log("risposte corrette: " + arrayRisposteCorrette);
-      sceltaOpzione(indiceCurrentQuestion);
-    }
-  }, 1000);
-} 
+function aggiornaGrafico() {
+  yValues[0] = tempoRimanente;
+  yValues[1] = 60 - tempoRimanente; 
+  myChart.update();
+}
 
 //--------------------------------------------------------------------------------------
 
@@ -384,3 +400,23 @@ nextQuestion(indiceDiPartenza);
 
 //---------------------------------------------------------------------------------
 
+
+// const ctx = document.getElementById('myChart');
+// new Chart(ctx, {
+//   type: 'doughnut',
+//   data: {
+//     labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+//     datasets: [{
+//       label: '# of Votes',
+//       data: [12, 19, 3, 5, 2, 3],
+//       borderWidth: 1
+//     }]
+//   },
+//   options: {
+//     scales: {
+//       y: {
+//         beginAtZero: true
+//       }
+//     }
+//   }
+// });
