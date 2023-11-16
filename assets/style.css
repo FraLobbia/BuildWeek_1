@@ -33,10 +33,9 @@ h2 {
 }
 
 main p {
-    color: #BDC4CE;
+    color: #e0e0e0;
     font-size: 26px;
     margin-bottom: 50px;
-    font-family: 'Inter', sans-serif;
     line-height: 1.2;
 }
 
@@ -340,11 +339,11 @@ textarea {
 .results {
     margin-top: 20px;
     margin-bottom: 5px;
-    font-size: 42px;
+    font-size: 50px;
 }
 
 .sottoResult {
-    font-size: 22px;
+    font-size: 27px;
 }
 
 .bloccoCorrect,
@@ -389,7 +388,7 @@ textarea {
 }
 
 .percentuale {
-    font-weight: 800;
+    font-weight: 700;
     font-size: 40px;
     margin-bottom: 5px;
 }
@@ -423,5 +422,6 @@ textarea {
 }
 
 .congratulations {
-    font-size: 33px;
+    font-size: 28px;
+    font-weight: 500;
 }

@@ -283,7 +283,7 @@ function creaPagina3(main, footer) { // prepara la pagina risultati attravero de
   titoloResults.appendChild(results);
 
   const sottoResult = document.createElement('p');
-  sottoResult.innerHTML = 'The summar of your answers:';
+  sottoResult.innerHTML = 'The summary of your answers:';
   sottoResult.classList.add("sottoResult");
   titoloResults.appendChild(sottoResult);
 
@@ -361,6 +361,7 @@ function creaPagina3(main, footer) { // prepara la pagina risultati attravero de
     congratulations.innerHTML = "Congratulations!";
     congratulations.appendChild(passed);
     passed.innerHTML = "<br> You passed the exam.";
+    passed.style.color = "#00ffffb7";
     paragrafoCentrale.innerHTML = "<br>We'll send you the certificate <br> in few minutes. <br> Check your email (including <br> promotions / spam folder)";
   } else {
     congratulations.innerHTML = "<br>You FAILED!<br>";
