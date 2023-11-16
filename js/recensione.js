@@ -45,3 +45,8 @@ document.addEventListener("DOMContentLoaded", function () {
         fillStars(rating, star.classList.contains('selected') ? '#00FFFF' : 'black');
     }
 });
+
+const button = document.getElementsByTagName('button');
+button.addEventListener('click', function () {
+    window.location.href = "https://epicode.com/it/";
+})

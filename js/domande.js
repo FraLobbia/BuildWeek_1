@@ -1,19 +1,3 @@
-function checkBoxValidate() {
-  var accetto = document.form1.accetto.checked;
-  if (accetto === false)
-    alert("Accetta i Termini di Servizio");
-  else
-    window.location.href = "domande.html";
-}
-
-function checkFunction() {
-  const buttonProceed = document.getElementById("proceed");
-  buttonProceed.addEventListener("click", function () {
-    alert("Accetta i termini di servizio");
-  });
-}
-
-//---------------------------------------//
 const questions = [
   {
     category: "Science: Computers",
@@ -115,14 +99,13 @@ const questions = [
 ];
 
 const arrayRisposteCorrette = []; // array che serve a memorizzare il totale delle risposte corrette
-var indiceDiPartenza = 9; // mi serve per inizializzare le domande
-let timer;
+var indiceDiPartenza = 0; // mi serve per inizializzare le domande
 
 // ----------------------------------------------------- dichiarazioni ----------------------------------------------------------------------------------------------
 function nextQuestion(indiceCurrentQuestion) {
-  // definisco l'indice della domanda che voglio
-  // var indiceCurrentQuestion = Math.floor(Math.random() * questions.length);
-  tempo(indiceCurrentQuestion);
+
+  tempo(indiceCurrentQuestion); // invoca la funzione tempo, che vediamo più giù, all'inizio di ogni domanda
+
   // scrivo nello span del footer l'indice della domanda
   var domandaCorrente = document.getElementById('domanda_corrente');
   domandaCorrente.innerText = indiceCurrentQuestion + 1;
@@ -174,7 +157,8 @@ function nextQuestion(indiceCurrentQuestion) {
   // tramite un forEach addo l'eventListener ad ogni button.
   // la funzione richiamata:
   //    1. controlla se la risposta è giusta e pusha a arrayRisposteCorrette 1 (se giusta)/ 0 (se sbagliata)
-  //    2. triggera di nuovo la funzione nextQuestion per cambiare domanda
+  //    2. triggera la funzione sceltaOpzione che verifica se le domande sono arrivate alla fine
+  //    3. resetta il timer della funzione tempo
   allButtons.forEach(function (button) {
     button.addEventListener("click", function () {
       var risposta = this.textContent;
@@ -195,14 +179,13 @@ function nextQuestion(indiceCurrentQuestion) {
   });
 
 };
-
 //-------------------------------------------------------------------------------------
-var xValues = ["Tempo Rimanente", "Tempo passato"];
+var xValues = ["Tempo Rimanente", "Tempo passato"]; // questi sono i parametri per far funzionare chart js
 var yValues = [60];
 var barColors = ["#00ffff","transparent"];
 myChart = new Chart("myChart", {
   type: "doughnut",
-  data: {
+  data: { 
     datasets: [
       {
         backgroundColor: barColors,
@@ -216,59 +199,52 @@ myChart = new Chart("myChart", {
     title: {
       display: true,
     },
-    rotation: Math.PI,
     hover: {mode:null}, 
   },
 });
-
-function tempo(indiceCurrentQuestion) {
-  clearInterval(timer);
+//--------------------------------------------------- VAI ALE, TOCCA A TE !!!-----------------
+ let timer;
+function tempo(indiceCurrentQuestion) { // Funzione che gestisci tutto il tempo delle domande e che permette di aggiornare (attraverso altre funzioni )il grafico e il timer
+  clearInterval(timer); 
   tempoRimanente = 60;
   aggiornaTempo();
   timer = setInterval(function () {
     aggiornaTempo();
     aggiornaGrafico();
-    if (tempoRimanente === -1) {
+    if (tempoRimanente === -1) { // questo if prevede la possibilità che il tempo scada e che quindi vengano dati 0 punti
       clearInterval(timer);
-      arrayRisposteCorrette.push(0);
+      arrayRisposteCorrette.push(0); // segna la risposta come errata
       console.log("risposte corrette: " + arrayRisposteCorrette);
-      sceltaOpzione(indiceCurrentQuestion);
+      sceltaOpzione(indiceCurrentQuestion); // fa il check se siamo arrivati alla fine delle domande
     }
-  }, 1000);
+  }, 1000); // ogni secondo aggiorna il grafico
 } 
-function aggiornaGrafico() {
+//--------------------------------------------------- 
+function aggiornaGrafico() { // aggiorna il grafico a seconda della funzione tempo
   yValues[0] = tempoRimanente;
   yValues[1] = 60 - tempoRimanente; 
   myChart.update();
 }
-
 //--------------------------------------------------------------------------------------
-
-function sceltaOpzione(indiceCurrentQuestion) {
-
-
+function sceltaOpzione(indiceCurrentQuestion) { // verifica se il test è finito 
   let y = questions.length
-  if (indiceCurrentQuestion === y - 1) {
+  if (indiceCurrentQuestion === y - 1) { // se l'indice delle domande è uguale al totale delle domande finisce e passa alla pagina risultati
     fine();
-  } else {
-    indiceCurrentQuestion++;
+  } else { // altrimenti
+    indiceCurrentQuestion++; // incrementa l'indice
     setTimeout(function () {
-      nextQuestion(indiceCurrentQuestion);
-    }, 500);
+      nextQuestion(indiceCurrentQuestion); // e passa alla prossima domanda
+    }, 500); // con mezzo secondo di timeout
   }
 }
-
 //--------------------------------------------------------------------------------------
-
-function aggiornaTempo() {
-  const orologio = document.getElementById("orologio");
+function aggiornaTempo() { // decrementa ogni secondo l'html del timer e aggiorna il timer
+  const orologio = document.getElementById("orologio"); 
   orologio.textContent = tempoRimanente;
   tempoRimanente--;
 }
-
 //--------------------------------------------------------------------------------------
-
-function fine() {
+function fine() { // quando le domande sono finite cancella tutto l'html e avvia la funzione creaPagina3 che prepara la pagina risultati
   clearInterval(timer);
   const main = document.querySelector('main');
   const footer = document.querySelector('footer')
@@ -278,11 +254,9 @@ function fine() {
   tempo.parentNode.removeChild(tempo);
   creaPagina3(main, footer);
 }
-
-
 //---------------------------------------------------------------------------------------------
 
-function creaPagina3(main, footer) {
+function creaPagina3(main, footer) { // prepara la pagina risultati attravero dei createElement e appendChild
   const sommaRisposteCorrette = arrayRisposteCorrette.reduce(function (acc, valore) {
     return acc + valore;
   }, 0);
@@ -297,7 +271,7 @@ function creaPagina3(main, footer) {
   const percentualeRisposteSbagliate = sommaRisposteSbagliate / questions.length * 100;
 
 
-  // parte alta post-domande -------------------------------------------------------
+  // parte alta post-domande ------------------------
 
   const titoloResults = document.createElement('titoloResults');
   titoloResults.classList.add("titoloResults");
@@ -313,7 +287,7 @@ function creaPagina3(main, footer) {
   sottoResult.classList.add("sottoResult");
   titoloResults.appendChild(sottoResult);
 
-  // lato sinistro post-domande --------------------------------------------------------------
+  // lato sinistro post-domande --------------------
 
   const bloccoCorrect = document.createElement('div');
   bloccoCorrect.classList.add("bloccoCorrect");
@@ -333,22 +307,18 @@ function creaPagina3(main, footer) {
   spanSxBasso.innerHTML = sommaRisposteCorrette + '/' + questions.length + ' questions';
   spanSxBasso.classList.add("risposte");
   bloccoCorrect.appendChild(spanSxBasso);
-
-  // centro post-domande --------------------------------------------------------------
-
+  // centro post-domande --------------------------------------
   const bloccoCentrale = document.createElement('div');
   bloccoCentrale.classList.add("bloccoCentrale");
   main.appendChild(bloccoCentrale);
-
- // grafico a ciambella -------------------------------------------------------
-
+ // grafico a ciambella -----------------------------------------
  const grafico = document.createElement('div');
  grafico.id = "grafico"
  grafico.innerHTML = `<canvas id="myChartResult" width="500" height="500" style="display: inline-block;box-sizing: border-box;height: 500px;width: 500px;"></canvas>`
  bloccoCentrale.appendChild(grafico)
 
-
- var xValues = [sommaRisposteCorrette, sommaRisposteSbagliate];
+  // ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ var xValues = [sommaRisposteCorrette, sommaRisposteSbagliate]; // parametri di chart.js per il grafico dei risultati
  var yValues = [sommaRisposteCorrette, sommaRisposteSbagliate];
  var barColors = ["#00ffff","#C5138F"];
  myChartResult = new Chart("myChartResult", {
@@ -371,8 +341,7 @@ function creaPagina3(main, footer) {
      hover: {mode:null}, 
    },
  });
-
-  // -------------------------------------------------------
+  // --------------------------------------
   const internoAnello = document.createElement('div');
   internoAnello.classList.add("internoAnello");
   grafico.appendChild(internoAnello);
@@ -399,9 +368,6 @@ function creaPagina3(main, footer) {
     passed.innerHTML = "<br> You didn't passed <br> the exam.";
     paragrafoCentrale.innerHTML = "";
   }
-
-  
-
   // lato destro post-domande--------------------------------------------------------------
 
   const bloccoWrong = document.createElement('div');
@@ -434,82 +400,5 @@ function creaPagina3(main, footer) {
 }
 
 
-
+// invocazione della funziona con l'indice di partenza
 nextQuestion(indiceDiPartenza);
-
-
-//---------------------------------------------------------------------------------
-
-
-// const ctx = document.getElementById('myChart');
-// new Chart(ctx, {
-//   type: 'doughnut',
-//   data: {
-//     labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-//     datasets: [{
-//       label: '# of Votes',
-//       data: [12, 19, 3, 5, 2, 3],
-//       borderWidth: 1
-//     }]
-//   },
-//   options: {
-//     scales: {
-//       y: {
-//         beginAtZero: true
-//       }
-//     }
-//   }
-// });
-
-// const radius = 90;
-// const circumference = 2 * Math.PI * radius;
-// const correctOffset = circumference * (percentCorrect / 100);
-// const incorrectOffset = circumference * (percentIncorrect / 100);
-
-// // Nascondi il quiz container e mostra i risultati
-
-// const prova = document.createElement('div');
-// prova.style.display = 'flex';
-// prova.innerHTML = `
-
-//     <h1>Results</h1>
-//     <h2>The summary of your answers:</h2>
-//     <div id="details-container" class="details-container">
-//         <div class="result correct">
-//             <h3 class='correctH'>Correct</h3>
-//             <p class='correctP'>${percentCorrect.toFixed(1)}%</p>
-//             <p class='correctP2'>${score}/${totalQuestions} questions</p>
-//         </div>
-//         <svg width="300" height="300" viewBox="0 0 200 200">
-//             <circle id="correct-circle" r="90" cx="100" cy="100" fill="transparent" stroke="#d20094" stroke-width="20"
-//                 stroke-dasharray="${circumference}" stroke-dashoffset="0"
-//                 transform="rotate(-90 100 100)" />
-//             <circle id="incorrect-circle" r="90" cx="100" cy="100" fill="transparent" stroke="#00ffff" stroke-width="20"
-//                 stroke-dasharray="${circumference}" stroke-dashoffset="${circumference - correctOffset}"
-//                 transform="rotate(-90 100 100)" />
-//             <text x="50%" y="50%" alignment-baseline="middle" text-anchor="middle" font-size="16px" fill="#fff">
-//                 ${percentCorrect >= passingScore ?
-//         `<tspan class="winH" x="50%" dy="-1.2em">Congratulations!</tspan>
-//                 <tspan class="winP" x="50%" dy="1.2em">You passed the exam.</tspan>
-//                 <tspan class="secondP" x="50%" dy="1.2em">We'll send you the certificate</tspan>
-//                 <tspan class="secondP" x="50%" dy="1.2em">in a few minutes.</tspan>
-//                 <tspan class="thirdP" x="50%" dy="1.2em">Check your email (including promotions /</tspan>
-//                 <tspan class="thirdP" x="50%" dy="1.2em"> spam folder)</tspan> ` :
-//         `<tspan class="loseH" x="50%" dy="-1.5em">Oh no!</tspan>
-//                 <tspan class="loseP" x="50%" dy="1.5em">You didn't pass the exam.</tspan>
-//                 <tspan class="secondP" x="50%" dy="1.5em">Try again, champion!</tspan>`
-//     }
-//             </text>
-//         </svg>
-//         <div class="result wrong">
-//             <h3 class='incorrectH'>Wrong</h3>
-//             <p class='incorrectP'>${percentIncorrect.toFixed(1)}%</p>
-//             <p class='incorrectP2'>${totalQuestions - score}/${totalQuestions} questions</p>
-//         </div>
-//     </div>
-//     <form action="./rating.html">
-//         <button class="cursore" id="proceed" type="submit">RATE US</button>
-//     </form>
-// `;
-
-// main.appendChild(prova);
