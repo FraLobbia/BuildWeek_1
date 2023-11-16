@@ -212,9 +212,7 @@ myChart = new Chart("myChart", {
     ],
   },
   options: {
-    tooltips: {
-      enabled:false
-    },
+    cutout: '80%',
     title: {
       display: true,
     },
@@ -342,37 +340,37 @@ function creaPagina3(main, footer) {
   bloccoCentrale.classList.add("bloccoCentrale");
   main.appendChild(bloccoCentrale);
 
-    // grafico a ciambella -------------------------------------------------------
+ // grafico a ciambella -------------------------------------------------------
 
-    const grafico = document.createElement('div');
-    grafico.id = "grafico"
-    grafico.innerHTML = `<canvas id="myChartResult"></canvas>`
-    bloccoCentrale.appendChild(grafico)
+ const grafico = document.createElement('div');
+ grafico.id = "grafico"
+ grafico.innerHTML = `<canvas id="myChartResult"></canvas>`
+ bloccoCentrale.appendChild(grafico)
 
 
-    var xValues = [sommaRisposteCorrette, sommaRisposteSbagliate];
-    var yValues = [sommaRisposteCorrette, sommaRisposteSbagliate];
-    var barColors = ["#C5138F","#00ffff"];
-    myChartResult = new Chart("myChartResult", {
-      type: "doughnut",
-      data: {
-        datasets: [
-          {
-            backgroundColor: barColors,
-            data: yValues,
-            borderWidth: 0,
-          },
-        ],
-      },
-      options: {
-        cutout: 150,
-        title: {
-          display: true,
-        },
-        rotation: Math.PI,
-        hover: {mode:null}, 
-      },
-    });
+ var xValues = [sommaRisposteCorrette, sommaRisposteSbagliate];
+ var yValues = [sommaRisposteCorrette, sommaRisposteSbagliate];
+ var barColors = ["#C5138F","#00ffff"];
+ myChartResult = new Chart("myChartResult", {
+   type: "doughnut",
+   data: {
+     datasets: [
+       {
+         backgroundColor: barColors,
+         data: yValues,
+         borderWidth: 0,
+       },
+     ],
+   },
+   options: {
+     cutout: '80%',
+     title: {
+       display: true,
+     },
+     rotation: Math.PI,
+     hover: {mode:null}, 
+   },
+ });
 
   // -------------------------------------------------------
   const internoAnello = document.createElement('div');

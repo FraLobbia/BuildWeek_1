@@ -173,13 +173,13 @@ input[type="checkbox"]:focus {
 #contenitore_orologio {
     text-align: center;
     padding: 20px;
-    font-size: 8px;
+    font-size: 12px;
     position: relative;
-    top: -115px;
+    top: -125px;
 }
 
 #orologio {
-    font-size: 30px;
+    font-size: 40px;
 }
 
 h3 {
@@ -352,6 +352,7 @@ textarea {
 .bloccoCentrale {
     width: 70%;
     text-align: center;
+
 }
 
 .bloccoCorrect {
@@ -393,8 +394,7 @@ textarea {
     width: 70%;
     margin: 0 auto;
 }
-
-/* #internoAnello {
+.internoAnello {
     position: relative;
-    bottom: 600px;
-} */
+    bottom: 300px;
+}
