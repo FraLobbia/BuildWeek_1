@@ -203,7 +203,8 @@ myChart = new Chart("myChart", {
   },
 });
 //--------------------------------------------------- VAI ALE, TOCCA A TE !!!-----------------
- let timer;
+let timer;
+
 function tempo(indiceCurrentQuestion) { // Funzione che gestisci tutto il tempo delle domande e che permette di aggiornare (attraverso altre funzioni )il grafico e il timer
   clearInterval(timer); 
   tempoRimanente = 60;
@@ -312,16 +313,16 @@ function creaPagina3(main, footer) { // prepara la pagina risultati attravero de
   bloccoCentrale.classList.add("bloccoCentrale");
   main.appendChild(bloccoCentrale);
  // grafico a ciambella -----------------------------------------
- const grafico = document.createElement('div');
- grafico.id = "grafico"
- grafico.innerHTML = `<canvas id="myChartResult" width="500" height="500" style="display: inline-block;box-sizing: border-box;height: 500px;width: 500px;"></canvas>`
- bloccoCentrale.appendChild(grafico)
+  const grafico = document.createElement('div');
+  grafico.id = "grafico"
+  grafico.innerHTML = `<canvas id="myChartResult" width="500" height="500" style="display: inline-block;box-sizing: border-box;height: 500px;width: 500px;"></canvas>`
+  bloccoCentrale.appendChild(grafico)
 
   // ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
- var xValues = [sommaRisposteCorrette, sommaRisposteSbagliate]; // parametri di chart.js per il grafico dei risultati
- var yValues = [sommaRisposteCorrette, sommaRisposteSbagliate];
- var barColors = ["#00ffff","#C5138F"];
- myChartResult = new Chart("myChartResult", {
+  var xValues = [sommaRisposteCorrette, sommaRisposteSbagliate]; // parametri di chart.js per il grafico dei risultati
+  var yValues = [sommaRisposteCorrette, sommaRisposteSbagliate];
+  var barColors = ["#00ffff","#C5138F"];
+  myChartResult = new Chart("myChartResult", {
    type: "doughnut",
    data: {
      datasets: [
@@ -340,7 +341,7 @@ function creaPagina3(main, footer) { // prepara la pagina risultati attravero de
      rotation: Math.PI,
      hover: {mode:null}, 
    },
- });
+  });
   // --------------------------------------
   const internoAnello = document.createElement('div');
   internoAnello.classList.add("internoAnello");
