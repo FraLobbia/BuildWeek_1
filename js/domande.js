@@ -115,7 +115,7 @@ const questions = [
 ];
 
 const arrayRisposteCorrette = []; // array che serve a memorizzare il totale delle risposte corrette
-var indiceDiPartenza = 0; // mi serve per inizializzare le domande
+var indiceDiPartenza = 9; // mi serve per inizializzare le domande
 let timer;
 
 // ----------------------------------------------------- dichiarazioni ----------------------------------------------------------------------------------------------
@@ -199,7 +199,7 @@ function nextQuestion(indiceCurrentQuestion) {
 //-------------------------------------------------------------------------------------
 var xValues = ["Tempo Rimanente", "Tempo passato"];
 var yValues = [60];
-var barColors = ["#00aba9","transparent"];
+var barColors = ["#00ffff","transparent"];
 myChart = new Chart("myChart", {
   type: "doughnut",
   data: {
@@ -215,7 +215,6 @@ myChart = new Chart("myChart", {
     tooltips: {
       enabled:false
     },
-    
     title: {
       display: true,
     },
@@ -299,6 +298,7 @@ function creaPagina3(main, footer) {
 
   const percentualeRisposteSbagliate = sommaRisposteSbagliate / questions.length * 100;
 
+
   // parte alta post-domande -------------------------------------------------------
 
   const titoloResults = document.createElement('titoloResults');
@@ -366,6 +366,41 @@ function creaPagina3(main, footer) {
     paragrafoCentrale.innerHTML = "We'll send you the certificate <br> in few minutes. <br> Check your email (including <br> promotions / spam folder)";
   }
 
+    // grafico a ciambella -------------------------------------------------------
+
+    const grafico = document.createElement('div');
+    grafico.id = "grafico"
+    grafico.innerHTML = `<canvas id="myChartResult"></canvas>`
+    bloccoCentrale.appendChild(grafico)
+
+
+    var xValues = [sommaRisposteCorrette, sommaRisposteSbagliate];
+    var yValues = [sommaRisposteCorrette, sommaRisposteSbagliate];
+    var barColors = ["#C5138F","#00ffff"];
+    myChartResult = new Chart("myChartResult", {
+      type: "doughnut",
+      data: {
+        datasets: [
+          {
+            backgroundColor: barColors,
+            data: yValues,
+            borderWidth: 0,
+          },
+        ],
+      },
+      options: {
+        tooltips: {
+          enabled:false
+        },
+        title: {
+          display: true,
+        },
+        rotation: Math.PI,
+        hover: {mode:null}, 
+      },
+    });
+
+  // -------------------------------------------------------
 
   // lato destro post-domande--------------------------------------------------------------
 
@@ -392,8 +427,13 @@ function creaPagina3(main, footer) {
   const rateUs = document.createElement('button');
   rateUs.innerHTML = 'RATE US';
   rateUs.classList.add("rateUs");
+  rateUs.addEventListener('click', function () {
+    window.location.href = "recensione.html";
+  })
   footer.appendChild(rateUs);
 }
+
+
 
 nextQuestion(indiceDiPartenza);
 
@@ -420,3 +460,56 @@ nextQuestion(indiceDiPartenza);
 //     }
 //   }
 // });
+
+// const radius = 90;
+// const circumference = 2 * Math.PI * radius;
+// const correctOffset = circumference * (percentCorrect / 100);
+// const incorrectOffset = circumference * (percentIncorrect / 100);
+
+// // Nascondi il quiz container e mostra i risultati
+
+// const prova = document.createElement('div');
+// prova.style.display = 'flex';
+// prova.innerHTML = `
+
+//     <h1>Results</h1>
+//     <h2>The summary of your answers:</h2>
+//     <div id="details-container" class="details-container">
+//         <div class="result correct">
+//             <h3 class='correctH'>Correct</h3>
+//             <p class='correctP'>${percentCorrect.toFixed(1)}%</p>
+//             <p class='correctP2'>${score}/${totalQuestions} questions</p>
+//         </div>
+//         <svg width="300" height="300" viewBox="0 0 200 200">
+//             <circle id="correct-circle" r="90" cx="100" cy="100" fill="transparent" stroke="#d20094" stroke-width="20"
+//                 stroke-dasharray="${circumference}" stroke-dashoffset="0"
+//                 transform="rotate(-90 100 100)" />
+//             <circle id="incorrect-circle" r="90" cx="100" cy="100" fill="transparent" stroke="#00ffff" stroke-width="20"
+//                 stroke-dasharray="${circumference}" stroke-dashoffset="${circumference - correctOffset}"
+//                 transform="rotate(-90 100 100)" />
+//             <text x="50%" y="50%" alignment-baseline="middle" text-anchor="middle" font-size="16px" fill="#fff">
+//                 ${percentCorrect >= passingScore ?
+//         `<tspan class="winH" x="50%" dy="-1.2em">Congratulations!</tspan>
+//                 <tspan class="winP" x="50%" dy="1.2em">You passed the exam.</tspan>
+//                 <tspan class="secondP" x="50%" dy="1.2em">We'll send you the certificate</tspan>
+//                 <tspan class="secondP" x="50%" dy="1.2em">in a few minutes.</tspan>
+//                 <tspan class="thirdP" x="50%" dy="1.2em">Check your email (including promotions /</tspan>
+//                 <tspan class="thirdP" x="50%" dy="1.2em"> spam folder)</tspan> ` :
+//         `<tspan class="loseH" x="50%" dy="-1.5em">Oh no!</tspan>
+//                 <tspan class="loseP" x="50%" dy="1.5em">You didn't pass the exam.</tspan>
+//                 <tspan class="secondP" x="50%" dy="1.5em">Try again, champion!</tspan>`
+//     }
+//             </text>
+//         </svg>
+//         <div class="result wrong">
+//             <h3 class='incorrectH'>Wrong</h3>
+//             <p class='incorrectP'>${percentIncorrect.toFixed(1)}%</p>
+//             <p class='incorrectP2'>${totalQuestions - score}/${totalQuestions} questions</p>
+//         </div>
+//     </div>
+//     <form action="./rating.html">
+//         <button class="cursore" id="proceed" type="submit">RATE US</button>
+//     </form>
+// `;
+
+// main.appendChild(prova);

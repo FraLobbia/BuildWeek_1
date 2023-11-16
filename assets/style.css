@@ -164,28 +164,26 @@ input[type="checkbox"]:focus {
 
 
 #circleTimer {
-    width: 270px;
+    width: 150px;
     position: relative;
     transform: translateY(-25%);
     left: 80%;
     border-radius: 100%;
 }
-
 #contenitore_orologio {
     text-align: center;
     padding: 20px;
-    font-size: small;
+    font-size: 8px;
     position: relative;
-    top: -185px;
+    top: -115px;
+}
+#orologio {
+    font-size: 30px;
 }
 
-#orologio {
-    font-size: 40px;
-}
 
 h3 {
     font-size: 70px;
-    margin-top: 170px;
     margin-bottom: 50px;
     line-height: 1;
     text-align: center;
@@ -301,6 +299,7 @@ h4 {
 }
 
 hr {
+    margin-top: 0;
     margin-bottom: 70px;
     border: 1.5px solid #C5138F;
 }
@@ -310,11 +309,22 @@ hr {
 }
 
 #comment {
+    width: 90%;
     color: white;
     font-size: 18px;
     margin-left: 35px;
     background-color: transparent;
     border: none;
+}
+
+textarea:focus {
+    border: none;
+    outline: none;
+    resize: none;
+}
+
+textarea {
+    resize: none;
 }
 
 /* ------------ Pagina risultati--------------- */
@@ -342,12 +352,14 @@ hr {
 }
 
 .bloccoCentrale {
-    width: 34%;
+    width: 70%;
+    position:relative;
+    bottom: 500px;
 }
 
 .bloccoCorrect {
     text-align: left;
-    width: 33%;
+    width: 15%;
 }
 
 .bloccoCorrect p {
@@ -356,7 +368,7 @@ hr {
 
 .bloccoWrong {
     text-align: right;
-    width: 33%;
+    width: 15%;
 }
 
 .bloccoWrong p {
@@ -378,4 +390,9 @@ hr {
 .risposte {
     font-size: 15px;
     font-weight: 300;
+}
+
+#grafico {
+    width: 500px;
+    margin: 0 auto
 }
