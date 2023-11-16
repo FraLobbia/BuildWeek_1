@@ -351,8 +351,7 @@ textarea {
 
 .bloccoCentrale {
     width: 70%;
-    text-align: center;
-
+    height: 500px;
 }
 
 .bloccoCorrect {
@@ -391,10 +390,28 @@ textarea {
 }
 
 #grafico {
-    width: 70%;
     margin: 0 auto;
 }
+
+#myChartResult {
+    margin: 0 auto;
+    max-width: 500px;
+    max-height: 500px;
+    min-width: 500px;
+    min-height: 500px;
+}
+
 .internoAnello {
     position: relative;
-    bottom: 300px;
+    transform: translateY(-70%);
+    min-width: 500px;
+    min-height: 500px;
+}
+
+.paragrafoCentrale {
+    font-size: 22px;
+}
+
+.congratulations {
+    font-size: 33px;
 }

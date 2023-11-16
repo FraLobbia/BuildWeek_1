@@ -344,13 +344,13 @@ function creaPagina3(main, footer) {
 
  const grafico = document.createElement('div');
  grafico.id = "grafico"
- grafico.innerHTML = `<canvas id="myChartResult"></canvas>`
+ grafico.innerHTML = `<canvas id="myChartResult" width="500" height="500" style="display: inline-block;box-sizing: border-box;height: 500px;width: 500px;"></canvas>`
  bloccoCentrale.appendChild(grafico)
 
 
  var xValues = [sommaRisposteCorrette, sommaRisposteSbagliate];
  var yValues = [sommaRisposteCorrette, sommaRisposteSbagliate];
- var barColors = ["#C5138F","#00ffff"];
+ var barColors = ["#00ffff","#C5138F"];
  myChartResult = new Chart("myChartResult", {
    type: "doughnut",
    data: {
@@ -375,7 +375,7 @@ function creaPagina3(main, footer) {
   // -------------------------------------------------------
   const internoAnello = document.createElement('div');
   internoAnello.classList.add("internoAnello");
-  bloccoCentrale.appendChild(internoAnello);
+  grafico.appendChild(internoAnello);
   
   const congratulations = document.createElement('h5');
   congratulations.classList.add("congratulations");
