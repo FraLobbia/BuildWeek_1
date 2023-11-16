@@ -212,9 +212,7 @@ myChart = new Chart("myChart", {
     ],
   },
   options: {
-    tooltips: {
-      enabled:false
-    },
+    cutout: '80%',
     title: {
       display: true,
     },
@@ -342,17 +340,53 @@ function creaPagina3(main, footer) {
   bloccoCentrale.classList.add("bloccoCentrale");
   main.appendChild(bloccoCentrale);
 
+ // grafico a ciambella -------------------------------------------------------
+
+ const grafico = document.createElement('div');
+ grafico.id = "grafico"
+ grafico.innerHTML = `<canvas id="myChartResult" width="500" height="500" style="display: inline-block;box-sizing: border-box;height: 500px;width: 500px;"></canvas>`
+ bloccoCentrale.appendChild(grafico)
+
+
+ var xValues = [sommaRisposteCorrette, sommaRisposteSbagliate];
+ var yValues = [sommaRisposteCorrette, sommaRisposteSbagliate];
+ var barColors = ["#00ffff","#C5138F"];
+ myChartResult = new Chart("myChartResult", {
+   type: "doughnut",
+   data: {
+     datasets: [
+       {
+         backgroundColor: barColors,
+         data: yValues,
+         borderWidth: 0,
+       },
+     ],
+   },
+   options: {
+     cutout: '80%',
+     title: {
+       display: true,
+     },
+     rotation: Math.PI,
+     hover: {mode:null}, 
+   },
+ });
+
+  // -------------------------------------------------------
+  const internoAnello = document.createElement('div');
+  internoAnello.classList.add("internoAnello");
+  grafico.appendChild(internoAnello);
+  
   const congratulations = document.createElement('h5');
   congratulations.classList.add("congratulations");
-  bloccoCentrale.appendChild(congratulations);
+  internoAnello.appendChild(congratulations);
 
   const passed = document.createElement('span');
   passed.classList.add("passed");
 
-
   const paragrafoCentrale = document.createElement('p');
   paragrafoCentrale.classList.add("paragrafoCentrale");
-  bloccoCentrale.appendChild(paragrafoCentrale);
+  internoAnello.appendChild(paragrafoCentrale);
 
   if (percentualeRisposteCorrette >= 60) {
     congratulations.innerHTML = "Congratulations!";
@@ -366,41 +400,7 @@ function creaPagina3(main, footer) {
     paragrafoCentrale.innerHTML = "We'll send you the certificate <br> in few minutes. <br> Check your email (including <br> promotions / spam folder)";
   }
 
-    // grafico a ciambella -------------------------------------------------------
-
-    const grafico = document.createElement('div');
-    grafico.id = "grafico"
-    grafico.innerHTML = `<canvas id="myChartResult"></canvas>`
-    bloccoCentrale.appendChild(grafico)
-
-
-    var xValues = [sommaRisposteCorrette, sommaRisposteSbagliate];
-    var yValues = [sommaRisposteCorrette, sommaRisposteSbagliate];
-    var barColors = ["#C5138F","#00ffff"];
-    myChartResult = new Chart("myChartResult", {
-      type: "doughnut",
-      data: {
-        datasets: [
-          {
-            backgroundColor: barColors,
-            data: yValues,
-            borderWidth: 0,
-          },
-        ],
-      },
-      options: {
-        tooltips: {
-          enabled:false
-        },
-        title: {
-          display: true,
-        },
-        rotation: Math.PI,
-        hover: {mode:null}, 
-      },
-    });
-
-  // -------------------------------------------------------
+  
 
   // lato destro post-domande--------------------------------------------------------------
 

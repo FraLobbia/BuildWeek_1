@@ -173,14 +173,14 @@ input[type="checkbox"]:focus {
 #contenitore_orologio {
     text-align: center;
     padding: 20px;
-    font-size: 8px;
+    font-size: 12px;
     position: relative;
-    top: -115px;
-}
-#orologio {
-    font-size: 30px;
+    top: -125px;
 }
 
+#orologio {
+    font-size: 40px;
+}
 
 h3 {
     font-size: 70px;
@@ -322,11 +322,9 @@ textarea:focus {
     outline: none;
     resize: none;
 }
-
 textarea {
     resize: none;
 }
-
 /* ------------ Pagina risultati--------------- */
 
 .titoloResults {
@@ -353,8 +351,7 @@ textarea {
 
 .bloccoCentrale {
     width: 70%;
-    position:relative;
-    bottom: 500px;
+    height: 500px;
 }
 
 .bloccoCorrect {
@@ -393,6 +390,28 @@ textarea {
 }
 
 #grafico {
-    width: 500px;
-    margin: 0 auto
+    margin: 0 auto;
+}
+
+#myChartResult {
+    margin: 0 auto;
+    max-width: 500px;
+    max-height: 500px;
+    min-width: 500px;
+    min-height: 500px;
+}
+
+.internoAnello {
+    position: relative;
+    transform: translateY(-70%);
+    min-width: 500px;
+    min-height: 500px;
+}
+
+.paragrafoCentrale {
+    font-size: 22px;
+}
+
+.congratulations {
+    font-size: 33px;
 }
