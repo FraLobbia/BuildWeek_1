@@ -342,30 +342,6 @@ function creaPagina3(main, footer) {
   bloccoCentrale.classList.add("bloccoCentrale");
   main.appendChild(bloccoCentrale);
 
-  const congratulations = document.createElement('h5');
-  congratulations.classList.add("congratulations");
-  bloccoCentrale.appendChild(congratulations);
-
-  const passed = document.createElement('span');
-  passed.classList.add("passed");
-
-
-  const paragrafoCentrale = document.createElement('p');
-  paragrafoCentrale.classList.add("paragrafoCentrale");
-  bloccoCentrale.appendChild(paragrafoCentrale);
-
-  if (percentualeRisposteCorrette >= 60) {
-    congratulations.innerHTML = "Congratulations!";
-    congratulations.appendChild(passed);
-    passed.innerHTML = "<br> You passed the exam.";
-    paragrafoCentrale.innerHTML = "We'll send you the certificate <br> in few minutes. <br> Check your email (including <br> promotions / spam folder)";
-  } else {
-    congratulations.innerHTML = "andato male!";
-    congratulations.appendChild(passed);
-    passed.innerHTML = "<br> Non vado avanti";
-    paragrafoCentrale.innerHTML = "We'll send you the certificate <br> in few minutes. <br> Check your email (including <br> promotions / spam folder)";
-  }
-
     // grafico a ciambella -------------------------------------------------------
 
     const grafico = document.createElement('div');
@@ -389,9 +365,7 @@ function creaPagina3(main, footer) {
         ],
       },
       options: {
-        tooltips: {
-          enabled:false
-        },
+        cutout: 150,
         title: {
           display: true,
         },
@@ -401,6 +375,34 @@ function creaPagina3(main, footer) {
     });
 
   // -------------------------------------------------------
+  const internoAnello = document.createElement('div');
+  internoAnello.classList.add("internoAnello");
+  bloccoCentrale.appendChild(internoAnello);
+  
+  const congratulations = document.createElement('h5');
+  congratulations.classList.add("congratulations");
+  internoAnello.appendChild(congratulations);
+
+  const passed = document.createElement('span');
+  passed.classList.add("passed");
+
+  const paragrafoCentrale = document.createElement('p');
+  paragrafoCentrale.classList.add("paragrafoCentrale");
+  internoAnello.appendChild(paragrafoCentrale);
+
+  if (percentualeRisposteCorrette >= 60) {
+    congratulations.innerHTML = "Congratulations!";
+    congratulations.appendChild(passed);
+    passed.innerHTML = "<br> You passed the exam.";
+    paragrafoCentrale.innerHTML = "We'll send you the certificate <br> in few minutes. <br> Check your email (including <br> promotions / spam folder)";
+  } else {
+    congratulations.innerHTML = "andato male!";
+    congratulations.appendChild(passed);
+    passed.innerHTML = "<br> Non vado avanti";
+    paragrafoCentrale.innerHTML = "We'll send you the certificate <br> in few minutes. <br> Check your email (including <br> promotions / spam folder)";
+  }
+
+  
 
   // lato destro post-domande--------------------------------------------------------------
 

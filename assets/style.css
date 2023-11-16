@@ -177,10 +177,10 @@ input[type="checkbox"]:focus {
     position: relative;
     top: -115px;
 }
+
 #orologio {
     font-size: 30px;
 }
-
 
 h3 {
     font-size: 70px;
@@ -322,11 +322,9 @@ textarea:focus {
     outline: none;
     resize: none;
 }
-
 textarea {
     resize: none;
 }
-
 /* ------------ Pagina risultati--------------- */
 
 .titoloResults {
@@ -353,8 +351,7 @@ textarea {
 
 .bloccoCentrale {
     width: 70%;
-    position:relative;
-    bottom: 500px;
+    text-align: center;
 }
 
 .bloccoCorrect {
@@ -393,6 +390,11 @@ textarea {
 }
 
 #grafico {
-    width: 500px;
-    margin: 0 auto
+    width: 70%;
+    margin: 0 auto;
 }
+
+/* #internoAnello {
+    position: relative;
+    bottom: 600px;
+} */
