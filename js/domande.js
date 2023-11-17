@@ -181,8 +181,8 @@ function nextQuestion(indiceCurrentQuestion) {
 };
 //-------------------------------------------------------------------------------------
 var xValues = ["Tempo Rimanente", "Tempo passato"]; // questi sono i parametri per far funzionare chart js
-var yValues = [60];
-var barColors = ["#00ffff","transparent"];
+var yValues = [0];
+var barColors = ["rgba(153,104,157, 0.6)","#00ffff"];
 myChart = new Chart("myChart", {
   type: "doughnut",
   data: { 
@@ -222,8 +222,8 @@ function tempo(indiceCurrentQuestion) { // Funzione che gestisci tutto il tempo 
 } 
 //--------------------------------------------------- 
 function aggiornaGrafico() { // aggiorna il grafico a seconda della funzione tempo
-  yValues[0] = tempoRimanente;
-  yValues[1] = 60 - tempoRimanente; 
+  yValues[0] = 60 - tempoRimanente;
+  yValues[1] = tempoRimanente; 
   myChart.update();
 }
 //--------------------------------------------------------------------------------------
@@ -319,9 +319,8 @@ function creaPagina3(main, footer) { // prepara la pagina risultati attravero de
   bloccoCentrale.appendChild(grafico)
 
   // ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  var xValues = [sommaRisposteCorrette, sommaRisposteSbagliate]; // parametri di chart.js per il grafico dei risultati
-  var yValues = [sommaRisposteCorrette, sommaRisposteSbagliate];
-  var barColors = ["#00ffff","#C5138F"];
+  var yValues = [sommaRisposteSbagliate, sommaRisposteCorrette]; // parametri di chart.js per il grafico dei risultati
+  var barColors = ["#C5138F","#00ffff"];
   myChartResult = new Chart("myChartResult", {
    type: "doughnut",
    data: {
@@ -338,7 +337,6 @@ function creaPagina3(main, footer) { // prepara la pagina risultati attravero de
      title: {
        display: true,
      },
-     rotation: Math.PI,
      hover: {mode:null}, 
    },
   });
